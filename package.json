@@ -11,12 +11,15 @@
   },
   "dependencies": {
     "app-main": "file:app-main",
+    "app-sidebar": "file:app-sidebar",
     "app-styles": "file:app-styles",
     "babelify": "^6.1.2",
+    "brfs": "^1.4.0",
     "bulk": "^2.0.0",
     "cssnext": "^1.8.1",
     "linklocal": "^2.5.2",
     "serve": "^1.4.0",
-    "watchify": "^3.2.3"
+    "watchify": "^3.2.3",
+    "webcomponents.js": "^0.7.2"
   }
 }

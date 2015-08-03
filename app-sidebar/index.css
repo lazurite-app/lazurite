@@ -1,0 +1,19 @@
+app-sidebar {
+  width: var(--layout-sidebar-width);
+  position: relative;
+}
+
+app-sidebar[side='right'] {
+  border-left: 1px solid var(--color-darkish);
+  box-shadow: -1px 0 var(--color-darkest);
+}
+
+app-sidebar[side='left'] {
+  border-right: 1px solid var(--color-darkest);
+  box-shadow: +1px 0 var(--color-darkish);
+}
+
+app-sidebar .sidebar-preview {
+  position: relative!important;
+  height: var(--layout-preview-height);
+}
