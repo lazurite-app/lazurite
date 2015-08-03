@@ -7,14 +7,29 @@ app-scene-select ul {
   list-style-type: none;
   position: relative;
   height: 250px;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 app-scene-select > ul > li {
+  position: relative;
+  cursor: pointer;
   display: inline-block;
   float: left;
-  background: #f00;
+  background: color(var(--color-darkish) alpha(0.5));
   margin: 1px;
   box-sizing: border-box;
   width: calc(25% - 2px);
   height: 33%;
+}
+app-scene-select > ul > li:after {
+  content: ' ';
+  top: 0; bottom: 0; right: 0; left: 0;
+  background: transparent;
+  position: absolute;
+  pointer-events: none;
+}
+
+app-scene-select > ul > li:hover:after {
+  background: color(var(--color-lighter) alpha(0.2));
 }

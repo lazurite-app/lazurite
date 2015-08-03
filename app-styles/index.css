@@ -5,6 +5,12 @@ html {
   background: var(--color-darker);
 }
 
+body {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  overflow: hidden;
+}
+
 canvas {
   background: #f0f; /* temporary */
 }
