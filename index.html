@@ -6,14 +6,23 @@
     <link rel="stylesheet" href="bundle.css">
   </head>
   <body>
-    <main class="main">
-      <app-sidebar side="left">
-      </app-sidebar>
+    <main role="main" class="main">
+      <app-sidebar side="left"></app-sidebar>
+
       <section class="main-content">
+        <app-scene-select></app-scene-select>
+
+        <app-config>
+          <app-config-panel>preview</app-config-panel>
+          <app-config-panel>audio input settings</app-config-panel>
+        </app-config>
+
+        <app-post-select></app-post-select>
       </section>
-      <app-sidebar side="right">
-      </app-sidebar>
+
+      <app-sidebar side="right"></app-sidebar>
     </main>
+
     <script type="text/javascript" src="bundle.js"></script>
   </body>
 </html>
