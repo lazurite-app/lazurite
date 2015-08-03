@@ -1,0 +1,21 @@
+{
+  "name": "@hughsk/video-thing-app",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "start": "linklocal && npm run watch",
+    "watch": "(npm run watch:ify & npm run watch:css & serve . -SJ)",
+    "watch:ify": "watchify index.js -o bundle.js",
+    "watch:css": "cssnext --watch index.css bundle.css",
+    "postinstall": "linklocal && linklocal --list | bulk -c 'npm install --cache-min Infinity --production'"
+  },
+  "dependencies": {
+    "app-main": "file:app-main",
+    "app-styles": "file:app-styles",
+    "bulk": "^2.0.0",
+    "cssnext": "^1.8.1",
+    "linklocal": "^2.5.2",
+    "serve": "^1.4.0",
+    "watchify": "^3.2.3"
+  }
+}

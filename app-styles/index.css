@@ -1,0 +1,8 @@
+@import 'app-styles/variables';
+@import 'app-styles/reset';
+
+html {
+  background: var(--color-darker);
+}
+
+@import 'app-main';

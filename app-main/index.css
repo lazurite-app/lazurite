@@ -1,0 +1,23 @@
+.main {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
+.main > .sidebar {
+  width: 280px;
+}
+
+.main > .sidebar-right {
+  border-left: 1px solid var(--color-darkish);
+  box-shadow: -1px 0 var(--color-darkest);
+}
+
+.main > .sidebar-left {
+  border-right: 1px solid var(--color-darkest);
+  box-shadow: +1px 0 var(--color-darkish);
+}
+
+.main-content {
+  flex-grow: 1;
+}
