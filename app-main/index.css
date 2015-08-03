@@ -5,7 +5,8 @@
 }
 
 .main > .sidebar {
-  width: 280px;
+  width: var(--layout-sidebar-width);
+  position: relative;
 }
 
 .main > .sidebar-right {
@@ -16,6 +17,11 @@
 .main > .sidebar-left {
   border-right: 1px solid var(--color-darkest);
   box-shadow: +1px 0 var(--color-darkish);
+}
+
+.sidebar-preview {
+  position: relative!important;
+  height: var(--layout-preview-height);
 }
 
 .main-content {

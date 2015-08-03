@@ -12,6 +12,7 @@
   "dependencies": {
     "app-main": "file:app-main",
     "app-styles": "file:app-styles",
+    "babelify": "^6.1.2",
     "bulk": "^2.0.0",
     "cssnext": "^1.8.1",
     "linklocal": "^2.5.2",

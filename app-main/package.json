@@ -1,5 +1,12 @@
 {
   "name": "app-main",
   "version": "1.0.0",
-  "private": true
+  "private": true,
+  "browserify": {
+    "transform": ["babelify"]
+  },
+  "dependencies": {
+    "canvas-fit": "^1.4.0",
+    "sliced": "0.0.5"
+  }
 }

@@ -11,4 +11,7 @@
   --color-red: #FF6F5C;
   --color-yellow: #FFE169;
   --color-blue: #57BEF1;
+
+  --layout-sidebar-width: 280px;
+  --layout-preview-height: var(--layout-sidebar-width);
 }
