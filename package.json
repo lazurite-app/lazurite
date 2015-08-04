@@ -17,7 +17,7 @@
     "babelify": "^6.1.2",
     "brfs": "^1.4.0",
     "bulk": "^2.0.0",
-    "css-wipe": "^3.0.0",
+    "css-wipe": "^3.0.2",
     "cssnext": "^1.8.1",
     "linklocal": "^2.5.2",
     "serve": "^1.4.0",
