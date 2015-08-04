@@ -1,42 +1,41 @@
 import Event from 'synthetic-dom-events'
-import findup from 'findup-element'
-import domify from 'domify'
-
-const fs = require('fs')
-const html = fs.readFileSync(__dirname + '/index.html', 'utf8')
+import vel from 'vel'
 
 export default class AppSceneSelect extends window.HTMLElement {
   createdCallback () {
-    this.appendChild(domify(html))
-    this.list = this.createList()
-    this.querySelector('ul').appendChild(this.list)
+    const self = this
 
-    this.addEventListener('click', e => {
-      const el = findup(e.target, (
-        el => el.hasAttribute && el.hasAttribute('data-scene')
-      ))
+    const el = vel(render)
+    this.appendChild(el())
 
-      if (!el) return
+    // render dom nodes
+    // null -> null
+    function render (h) {
+      return h('ul.cf', createList(h, dispatch))
+    }
 
-      this.dispatchEvent(Event('app-scene-select', {
-        data: 'placeholder'
-      }))
-    }, false)
+    // dispatch an `app-scene-select` event
+    // num -> null -> null
+    function dispatch (i) {
+      return () => {
+        self.dispatchEvent(Event('app-scene-select', {
+          data: 'placeholder'
+        }))
+      }
+    }
   }
 
   attachedCallback () {
   }
+}
 
-  // good place for vdom I think
-  createList () {
-    const list = document.createDocumentFragment()
-
-    for (var i = 0; i < 24; i++) {
-      const li = document.createElement('li')
-      li.setAttribute('data-scene', i)
-      list.appendChild(li)
-    }
-
-    return list
+// create a list
+// fn -> HTMLElement
+function createList (h, dispatch) {
+  const list = []
+  for (var i = 0; i < 24; i++) {
+    const li = h('li', { 'ev-click': dispatch(i), 'data-scene': i })
+    list.push(li)
   }
+  return list
 }
