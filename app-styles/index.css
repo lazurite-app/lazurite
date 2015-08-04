@@ -29,10 +29,10 @@ canvas {
  */
 .cf:before,
 .cf:after {
-    content: " "; /* 1 */
-    display: table; /* 2 */
+  content: " "; /* 1 */
+  display: table; /* 2 */
 }
 
 .cf:after {
-    clear: both;
+  clear: both;
 }
