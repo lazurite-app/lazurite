@@ -1,0 +1,15 @@
+{
+  "name": "scene-blob",
+  "version": "1.0.0",
+  "description": "Undulating Blob",
+  "scene": "scene-base-shadertoy",
+  "parameters": {
+    "speed": {
+      "label": "Time Amplitude",
+      "dimensions": 1,
+      "default": 1,
+      "min": 0,
+      "max": 5
+    }
+  }
+}

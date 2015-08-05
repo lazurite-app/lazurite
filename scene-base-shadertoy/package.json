@@ -1,0 +1,12 @@
+{
+  "name": "base-scene-shadertoy",
+  "version": "1.0.0",
+  "shaders": {
+    "frag": "index.frag",
+    "vert": "index.vert"
+  },
+  "dependencies": {
+    "a-big-triangle": "^1.0.2",
+    "gl-shader": "^4.0.5"
+  }
+}
