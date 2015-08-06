@@ -3,8 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "electron": "electron app.js",
     "start": "linklocal && npm run watch",
-    "watch": "(npm run watch:ify & npm run watch:css & serve . -SJ)",
+    "watch": "(npm run watch:ify & npm run watch:css & npm run electron)",
     "watch:ify": "watchify index.js -o bundle.js",
     "watch:css": "cssnext --watch index.css bundle.css",
     "postinstall": "linklocal && linklocal --list | bulk -c 'npm install --cache-min Infinity --production'"
@@ -19,6 +20,7 @@
     "bulk": "^2.0.0",
     "css-wipe": "^3.0.2",
     "cssnext": "^1.8.1",
+    "electron-prebuilt": "^0.30.2",
     "linklocal": "^2.5.2",
     "serve": "^1.4.0",
     "watchify": "^3.2.3",
