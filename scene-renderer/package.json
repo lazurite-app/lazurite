@@ -1,0 +1,14 @@
+{
+  "name": "scene-renderer",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "after": "^0.8.1",
+    "babel": "^5.5.8",
+    "chokidar": "^1.0.5",
+    "events": "^1.0.2",
+    "glslify": "^2.2.1",
+    "inherits": "^2.0.1",
+    "raf": "^3.0.0"
+  }
+}

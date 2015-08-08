@@ -1,5 +1,5 @@
 {
-  "name": "base-scene-shadertoy",
+  "name": "scene-base-shadertoy",
   "version": "1.0.0",
   "shaders": {
     "frag": "index.frag",

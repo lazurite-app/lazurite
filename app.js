@@ -7,7 +7,7 @@ app.once('ready', function () {
     show: false
   })
 
-  control.loadUrl('file://' + path.join(__dirname, 'index.html'))
+  control.loadUrl('file://' + require.resolve('scene-renderer/index.html'))
   control.maximize()
 
   setTimeout(function () {

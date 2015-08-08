@@ -9,11 +9,12 @@ function Scene (gl, scene) {
   var vert
   var frag
 
-  scene.on('init', time => {
+  scene.parameters = scene.parameters || {}
+  scene.on('init', function (time) {
     frag = scene.shaders.frag.on('change', updateShader)
     vert = scene.shaders.vert.on('change', updateShader)
     keys = Object.keys(scene.parameters)
-    shader = Shader(gl, frag, vert)
+    shader = Shader(gl, vert, frag)
 
     function updateShader () {
       if (!shader) return
@@ -22,7 +23,10 @@ function Scene (gl, scene) {
     }
   })
 
-  scene.on('draw', time => {
+  scene.on('step', function (time) {
+    if (!shader) return
+
+    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight)
     shader.bind()
     shader.uniforms.iGlobalTime = scene.time
 
@@ -34,7 +38,7 @@ function Scene (gl, scene) {
     triangle(gl)
   })
 
-  scene.on('stop', time => {
+  scene.on('stop', function (time) {
     if (shader) shader.dispose()
     if (vert) vert.removeAllListeners()
     if (frag) frag.removeAllListeners()
