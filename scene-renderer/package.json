@@ -2,6 +2,9 @@
   "name": "scene-renderer",
   "version": "1.0.0",
   "private": true,
+  "scenes": [
+    "scene-blob"
+  ],
   "dependencies": {
     "after": "^0.8.1",
     "babel": "^5.5.8",
