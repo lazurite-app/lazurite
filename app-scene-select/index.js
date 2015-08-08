@@ -1,3 +1,4 @@
+import { scenes } from 'scene-renderer'
 import Event from 'synthetic-dom-events'
 import vel from 'vel'
 
@@ -33,9 +34,13 @@ export default class AppSceneSelect extends window.HTMLElement {
 // fn -> HTMLElement
 function createList (h, dispatch) {
   const list = []
-  for (var i = 0; i < 24; i++) {
-    const li = h('li', { 'ev-click': dispatch(i), 'data-scene': i })
-    list.push(li)
+
+  for (var i = 0; i < scenes.length; i++) {
+    list.push(h('li', {
+      'ev-click': dispatch(i),
+      'data-scene': scenes[i]
+    }, h('label', scenes[i])))
   }
+
   return list
 }

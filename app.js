@@ -1,5 +1,4 @@
 const Browser = require('browser-window')
-const path = require('path')
 const app = require('app')
 
 app.once('ready', function () {
@@ -7,7 +6,7 @@ app.once('ready', function () {
     show: false
   })
 
-  control.loadUrl('file://' + require.resolve('scene-renderer/index.html'))
+  control.loadUrl('file://' + require.resolve('./index.html'))
   control.maximize()
 
   setTimeout(function () {

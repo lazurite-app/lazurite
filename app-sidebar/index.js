@@ -1,3 +1,4 @@
+import SceneRenderer from 'scene-renderer'
 import fit from 'canvas-fit'
 import vel from 'vel'
 
@@ -14,6 +15,8 @@ export default class AppSidebar extends window.HTMLElement {
     if (!this.canvas) {
       const canvas = this.querySelector('canvas')
       this.canvas = setupCanvas(canvas)
+      this.renderer = SceneRenderer(this.canvas.getContext('webgl'))
+      this.renderer.use('scene-blob')
     }
   }
 }
@@ -21,6 +24,8 @@ export default class AppSidebar extends window.HTMLElement {
 // setup canvas
 // DOMNode -> DOMNode
 function setupCanvas (canvas) {
+
   window.addEventListener('resize', fit(canvas), false)
+
   return canvas
 }

@@ -19,6 +19,9 @@ function SceneRenderer (gl) {
 
   Emitter.call(this)
   this.current = null
+  this.gl = gl
+  this.gl.sceneCache = {}
+
   this.tick = this.tick.bind(this)
   this.tick()
 }
@@ -35,23 +38,21 @@ SceneRenderer.prototype.use = function use (scene) {
     this.current.disable()
   }
 
-  this.current = SceneWrapper(gl, scene)
+  this.current = SceneWrapper(this.gl, scene)
   this.current.enable()
 
   return this
 }
 
-const sceneCache = {}
-
 inherits(SceneWrapper, Emitter)
 function SceneWrapper (gl, name) {
-  if (sceneCache[name]) return sceneCache[name]
+  if (gl.sceneCache[name]) return gl.sceneCache[name]
   if (!(this instanceof SceneWrapper)) {
     return new SceneWrapper(gl, name)
   }
 
   Emitter.call(this)
-  sceneCache[name] = this
+  gl.sceneCache[name] = this
 
   const sceneLocation = Path.dirname(require.resolve(name + '/package.json'))
   const sceneShaders = this.shaders = {}
@@ -132,15 +133,3 @@ SceneWrapper.prototype.disable = function () {
   this.emit('stop', (Date.now() - start) / 1000)
   this.enabled = false
 }
-
-const canvas = document.body.appendChild(document.createElement('canvas'))
-const gl = canvas.getContext('webgl')
-
-canvas.width = window.innerWidth
-canvas.height = window.innerHeight
-canvas.style.position = 'absolute'
-canvas.style.left = 0
-canvas.style.top = 0
-
-SceneRenderer(gl)
-  .use('scene-blob')

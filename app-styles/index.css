@@ -10,10 +10,6 @@ body {
   overflow: hidden;
 }
 
-canvas {
-  background: #f0f; /* temporary */
-}
-
 @import 'app-main';
 @import 'app-sidebar';
 @import 'app-scene-select';

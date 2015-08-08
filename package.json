@@ -15,6 +15,7 @@
     "app-scene-select": "file:app-scene-select",
     "app-sidebar": "file:app-sidebar",
     "app-styles": "file:app-styles",
+    "babel": "^5.5.8",
     "babelify": "^6.1.2",
     "base-scene-shadertoy": "file:scene-base-shadertoy",
     "brfs": "^1.4.0",
