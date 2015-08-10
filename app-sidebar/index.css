@@ -13,11 +13,14 @@ app-sidebar[side='left'] {
   box-shadow: +1px 0 var(--color-darkish);
 }
 
+app-sidebar .sidebar-preview-inner {
+  position: relative;
+  height: 100%; width: 100%;
+}
+
 app-sidebar .sidebar-preview {
   position: relative!important;
   height: var(--layout-preview-height);
-}
-
-app-sidebar .sidebar-interplay {
-  margin-top: var(--layout-preview-height);
+  margin: 0.5rem;
+  margin-bottom: 0;
 }

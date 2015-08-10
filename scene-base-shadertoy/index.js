@@ -33,7 +33,7 @@ function Scene (gl, scene) {
 
     for (var i = 0; i < keys.length; i++) {
       var key = keys[i]
-      shader.uniforms[key] = scene.parameters[key].value
+      shader.uniforms[key] = scene.parameters[key]
     }
 
     triangle(gl)
