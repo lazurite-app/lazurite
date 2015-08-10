@@ -5,9 +5,10 @@
   "scene": "scene-base-shadertoy",
   "parameters": {
     "speed": {
+      "type": "range",
       "label": "Time Amplitude",
-      "dimensions": 1,
-      "default": 1,
+      "value": 1,
+      "step": 0.1,
       "min": 0,
       "max": 5
     }

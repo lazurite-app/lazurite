@@ -1,4 +1,5 @@
 const inherits = require('inherits')
+const copy = require('shallow-copy')
 const chokidar = require('chokidar')
 const glslify = require('glslify')
 const Emitter = require('events/')
@@ -58,41 +59,32 @@ SceneRenderer.prototype.use = function use (scene) {
   }
 
   this.interplay.clear()
-  this.current = SceneWrapper(this.gl, scene)
+  this.current = SceneWrapper(this.gl, scene, this.interplay)
   this.current.enable()
-
-  this.interplay.add('hello1', require('interplay-bang'), {
-    keys: {
-      button: 'J',
-      toggle: 'K'
-    }
-  })
-
-  this.interplay.add('hello2', require('interplay-bang'), {
-    keys: {
-      button: 'D',
-      toggle: 'F'
-    }
-  })
 
   return this
 }
 
 inherits(SceneWrapper, Emitter)
-function SceneWrapper (gl, name) {
+function SceneWrapper (gl, name, interplay) {
   if (gl.sceneCache[name]) return gl.sceneCache[name]
   if (!(this instanceof SceneWrapper)) {
-    return new SceneWrapper(gl, name)
+    return new SceneWrapper(gl, name, interplay)
   }
 
   Emitter.call(this)
   gl.sceneCache[name] = this
+
 
   const sceneLocation = Path.dirname(require.resolve(name + '/package.json'))
   const sceneShaders = this.shaders = {}
   const scenePkg = require(name + '/package.json')
   const basePkg = require(scenePkg.scene + '/package.json')
   const base = require(scenePkg.scene)
+  const params = scenePkg.parameters
+
+  addParams(interplay, params)
+  this.parameters = interplay.values
 
   const shaders = basePkg.shaders || {}
   const watcher = chokidar.watch([])
@@ -166,4 +158,19 @@ SceneWrapper.prototype.disable = function () {
   if (!this.enabled) return
   this.emit('stop', (Date.now() - start) / 1000)
   this.enabled = false
+}
+
+const types = {
+  range: require('interplay-range')
+}
+
+function addParams (interplay, params) {
+  Object.keys(params).forEach(function (key) {
+    const param = copy(params[key])
+    const Type = types[param.type]
+
+    delete param.type
+
+    interplay.add(key, Type, param)
+  })
 }

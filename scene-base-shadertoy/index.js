@@ -1,5 +1,7 @@
 const triangle = require('a-big-triangle')
 const Shader = require('gl-shader')
+const Range = require('interplay-range')
+const Bang = require('interplay-bang')
 
 module.exports = Scene
 
@@ -9,7 +11,6 @@ function Scene (gl, scene) {
   var vert
   var frag
 
-  scene.parameters = scene.parameters || {}
   scene.on('init', function (time) {
     frag = scene.shaders.frag.on('change', updateShader)
     vert = scene.shaders.vert.on('change', updateShader)

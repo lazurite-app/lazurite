@@ -23,7 +23,7 @@
     "css-wipe": "^3.0.2",
     "cssnext": "^1.8.1",
     "electron-prebuilt": "^0.30.2",
-    "interplay": "^1.0.0",
+    "interplay": "^1.0.1",
     "interplay-bang": "^1.0.0",
     "interplay-range": "^1.0.0",
     "linklocal": "^2.5.2",
