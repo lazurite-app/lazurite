@@ -1,4 +1,5 @@
 import SceneRenderer from 'scene-renderer'
+import Interplay from 'interplay'
 import fit from 'canvas-fit'
 import vel from 'vel'
 
@@ -9,14 +10,21 @@ export default class AppSidebar extends window.HTMLElement {
   createdCallback () {
     const el = vel((h, state) => h.html(html))
     this.appendChild(el())
+    this.interplay = Interplay()
   }
 
   attachedCallback () {
     if (!this.canvas) {
-      const canvas = this.querySelector('canvas')
-      this.canvas = setupCanvas(canvas)
-      this.renderer = SceneRenderer(this.canvas.getContext('webgl'))
-      this.renderer.use('scene-blob')
+      const canvas = this.canvas = setupCanvas(this.querySelector('canvas'))
+      const gl = this.gl = canvas.getContext('webgl')
+      const control = this.querySelector('.sidebar-interplay')
+
+      control.appendChild(this.interplay.el)
+      this.renderer = SceneRenderer(gl, {
+        left: this.getAttribute('side') === 'left',
+        right: this.getAttribute('side') === 'right',
+        interplay: this.interplay
+      }).use('scene-blob')
     }
   }
 }
@@ -24,7 +32,6 @@ export default class AppSidebar extends window.HTMLElement {
 // setup canvas
 // DOMNode -> DOMNode
 function setupCanvas (canvas) {
-
   window.addEventListener('resize', fit(canvas), false)
 
   return canvas

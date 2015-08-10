@@ -10,20 +10,39 @@ const fs = require('fs')
 module.exports = SceneRenderer
 
 const start = Date.now()
+const SHIFT = 16
 
 inherits(SceneRenderer, Emitter)
-function SceneRenderer (gl) {
+function SceneRenderer (gl, options) {
   if (!(this instanceof SceneRenderer)) {
-    return new SceneRenderer(gl)
+    return new SceneRenderer(gl, options)
   }
+
+  options = options || {}
 
   Emitter.call(this)
   this.current = null
   this.gl = gl
   this.gl.sceneCache = {}
 
+  const interplay = this.interplay = options.interplay
+  const location = (
+    (options.left && KeyboardEvent.DOM_KEY_LOCATION_LEFT) ||
+    (options.right && KeyboardEvent.DOM_KEY_LOCATION_RIGHT)
+  )
+
   this.tick = this.tick.bind(this)
   this.tick()
+
+  window.addEventListener('keydown', function (e) {
+    if (e.keyCode !== SHIFT) return
+    interplay.enabled = e.location === location
+  }, false)
+
+  window.addEventListener('keyup', function (e) {
+    if (e.keyCode !== SHIFT) return
+    interplay.enabled = true
+  })
 }
 
 SceneRenderer.scenes = require('./package.json').scenes
@@ -38,8 +57,23 @@ SceneRenderer.prototype.use = function use (scene) {
     this.current.disable()
   }
 
+  this.interplay.clear()
   this.current = SceneWrapper(this.gl, scene)
   this.current.enable()
+
+  this.interplay.add('hello1', require('interplay-bang'), {
+    keys: {
+      button: 'J',
+      toggle: 'K'
+    }
+  })
+
+  this.interplay.add('hello2', require('interplay-bang'), {
+    keys: {
+      button: 'D',
+      toggle: 'F'
+    }
+  })
 
   return this
 }

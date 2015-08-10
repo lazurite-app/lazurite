@@ -17,3 +17,7 @@ app-sidebar .sidebar-preview {
   position: relative!important;
   height: var(--layout-preview-height);
 }
+
+app-sidebar .sidebar-interplay {
+  margin-top: var(--layout-preview-height);
+}
