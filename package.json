@@ -30,6 +30,7 @@
     "scene-base-shadertoy": "file:scene-base-shadertoy",
     "scene-blob": "file:scene-blob",
     "scene-renderer": "file:scene-renderer",
+    "scene-warp": "file:scene-warp",
     "serve": "^1.4.0",
     "watchify": "^3.2.3",
     "webcomponents.js": "^0.7.2"

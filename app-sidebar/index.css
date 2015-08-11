@@ -21,6 +21,20 @@ app-sidebar .sidebar-preview-inner {
 app-sidebar .sidebar-preview {
   position: relative!important;
   height: var(--layout-preview-height);
-  margin: 0.5rem;
   margin-bottom: 0;
+}
+
+app-sidebar .sidebar-interplay {
+  overflow-y: auto;
+  position: absolute;
+  top: calc(var(--layout-preview-height));
+  border-top: 1px solid var(--color-darkish);
+  box-shadow: 0 -1px var(--color-darkest);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+app-sidebar .interplay-root {
+  min-height: 0;
 }

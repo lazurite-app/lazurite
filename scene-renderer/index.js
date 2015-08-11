@@ -83,8 +83,8 @@ function SceneWrapper (gl, name, interplay) {
   const base = require(scenePkg.scene)
   const params = scenePkg.parameters
 
-  addParams(interplay, params)
   this.parameters = interplay.values
+  this.bootstrap = addParams.bind(this, interplay, params)
 
   const shaders = basePkg.shaders || {}
   const watcher = chokidar.watch([])
@@ -150,6 +150,7 @@ SceneWrapper.prototype.enable = function () {
     return this.once('ready', this.enable.bind(this))
   }
 
+  this.bootstrap()
   this.emit('init', (Date.now() - start) / 1000)
   this.enabled = true
 }

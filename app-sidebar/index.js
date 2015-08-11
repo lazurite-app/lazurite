@@ -24,7 +24,7 @@ export default class AppSidebar extends window.HTMLElement {
         left: this.getAttribute('side') === 'left',
         right: this.getAttribute('side') === 'right',
         interplay: this.interplay
-      }).use('scene-blob')
+      }).use('scene-warp')
     }
   }
 }

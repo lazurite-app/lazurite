@@ -19,7 +19,6 @@ export default class AppSceneSelect extends window.HTMLElement {
     // num -> null -> null
     function dispatch (scene) {
       return e => {
-        console.log('dispatch?')
         self.dispatchEvent(Event('app-scene-select', {
           scene: scene
         }))
