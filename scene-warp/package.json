@@ -1,0 +1,44 @@
+{
+  "name": "scene-warp",
+  "version": "1.0.0",
+  "description": "Simple Warp Effect",
+  "scene": "scene-base-shadertoy",
+  "parameters": {
+    "uChannelOffset": {
+      "type": "range",
+      "label": "Channel Offset",
+      "value": 1,
+      "step": 0.01,
+      "min": -2,
+      "max": 2,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "uWarp": {
+      "type": "range",
+      "label": "Warp",
+      "value": 1,
+      "step": 0.01,
+      "min": -2,
+      "max": 2,
+      "keys": {
+        "up": "I",
+        "down": "U"
+      }
+    },
+    "uWeird": {
+      "type": "range",
+      "label": "Weird",
+      "value": 1,
+      "step": 0.1,
+      "min": -20,
+      "max": 20,
+      "keys": {
+        "up": "M",
+        "down": "N"
+      }
+    }
+  }
+}

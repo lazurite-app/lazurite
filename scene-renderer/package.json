@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scenes": [
-    "scene-blob"
+    "scene-blob",
+    "scene-warp"
   ],
   "dependencies": {
     "after": "^0.8.1",
