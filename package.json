@@ -30,6 +30,7 @@
     "scene-base-shadertoy": "file:scene-base-shadertoy",
     "scene-blob": "file:scene-blob",
     "scene-renderer": "file:scene-renderer",
+    "scene-road-to-hell": "file:scene-road-to-hell",
     "scene-warp": "file:scene-warp",
     "serve": "^1.4.0",
     "watchify": "^3.2.3",

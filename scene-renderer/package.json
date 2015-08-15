@@ -4,7 +4,8 @@
   "private": true,
   "scenes": [
     "scene-blob",
-    "scene-warp"
+    "scene-warp",
+    "scene-road-to-hell"
   ],
   "dependencies": {
     "after": "^0.8.1",
