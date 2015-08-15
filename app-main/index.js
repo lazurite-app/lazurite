@@ -1,5 +1,5 @@
 const getusermedia = require('getusermedia')
-const meta = require('meta-keys')
+const meta = require('meta-keys')()
 
 document.registerElement('app-sidebar', require('app-sidebar'))
 document.registerElement('app-scene-select', require('app-scene-select'))

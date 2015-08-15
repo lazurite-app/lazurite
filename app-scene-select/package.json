@@ -12,6 +12,6 @@
     "domify": "^1.3.3",
     "findup-element": "0.0.0",
     "synthetic-dom-events": "^0.2.2",
-    "vel": "^1.1.3"
+    "vel": "^1.1.4"
   }
 }
