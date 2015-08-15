@@ -1,7 +1,7 @@
 {
   "name": "scene-road-to-hell",
   "version": "1.0.0",
-  "description": "Undulating Blob",
+  "description": "The Road to Hell",
   "scene": "scene-base-shadertoy",
   "parameters": {
     "fogAlt": {

@@ -1,3 +1,6 @@
+// source:
+// https://www.shadertoy.com/view/Mds3Rn
+
 precision mediump float;
 
 uniform float iGlobalTime;
