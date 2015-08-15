@@ -43,6 +43,8 @@ app-scene-select > ul > li label {
   font-size: 0.7rem;
   text-shadow: 0 1px 1px #000;
   cursor: pointer;
+  text-align: center;
+  line-height: 1.15rem;
   color: #fff;
 }
 

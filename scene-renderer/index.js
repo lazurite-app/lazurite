@@ -51,6 +51,11 @@ function SceneRenderer (gl, options) {
 }
 
 SceneRenderer.scenes = require('./package.json').scenes
+SceneRenderer.titles = SceneRenderer.scenes.map(function (scene) {
+  const pkg = require(scene + '/package.json')
+  return pkg.title || pkg.description || pkg.name
+})
+
 SceneRenderer.prototype.tick = function tick () {
   raf(this.tick)
   if (!this.current) return

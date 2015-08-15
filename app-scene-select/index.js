@@ -1,4 +1,4 @@
-import { scenes } from 'scene-renderer'
+import { scenes, titles } from 'scene-renderer'
 import Event from 'synthetic-dom-events'
 import vel from 'vel'
 
@@ -46,7 +46,7 @@ export default class AppSceneSelect extends window.HTMLElement {
           'style': {
             'background-image': sceneImages[i] ? 'url('+sceneImages[i]+'?'+Date.now()+')' : 'none'
           }
-        }, h('label', scenes[i])))
+        }, h('label', titles[i])))
       }
 
       return list
