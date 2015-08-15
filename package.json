@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "electron": "electron app.js",
+    "packager": "electron-packager ./ 'Lazurite' --platform darwin --arch all --version 0.30.4 --icon ./icons/lazurite.icns",
     "start": "linklocal && npm run watch",
     "watch": "(npm run watch:css & npm run electron)",
     "watch:ify": "watchify index.js -o bundle.js",
@@ -35,5 +36,8 @@
     "serve": "^1.4.0",
     "watchify": "^3.2.3",
     "webcomponents.js": "^0.7.2"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.0.1"
   }
 }
