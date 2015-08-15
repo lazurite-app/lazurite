@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "canvas-fit": "^1.4.0",
+    "findup-element": "0.0.0",
+    "synthetic-dom-events": "^0.2.2",
     "vel": "^1.1.3"
   }
 }

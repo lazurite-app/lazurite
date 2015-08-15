@@ -28,6 +28,7 @@ function SceneRenderer (gl, options) {
   this.current = null
   this.gl = gl
   this.gl.sceneCache = {}
+  this.currentLocation = null
 
   const interplay = this.interplay = options.interplay
   const location = (
@@ -68,6 +69,20 @@ SceneRenderer.prototype.use = function use (scene) {
   return this
 }
 
+SceneRenderer.prototype.captureSnapshot = function (done) {
+  if (!this.current) return
+
+  const canvas = this.gl.canvas
+  const uri = canvas
+    .toDataURL('image/jpeg')
+    .replace('data:image/jpeg;base64,', '')
+
+  const buffer = new Buffer(uri, 'base64')
+  const dest = Path.join(this.current.location, 'screenshot.jpg')
+
+  fs.writeFile(dest, buffer, done)
+}
+
 inherits(SceneWrapper, Emitter)
 function SceneWrapper (gl, name, interplay) {
   if (gl.sceneCache[name]) return gl.sceneCache[name]
@@ -85,6 +100,7 @@ function SceneWrapper (gl, name, interplay) {
   const base = require(scenePkg.scene)
   const params = scenePkg.parameters
 
+  this.location = sceneLocation
   this.parameters = interplay.values
   this.bootstrap = addParams.bind(this, interplay, params)
 

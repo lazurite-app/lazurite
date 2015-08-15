@@ -1,6 +1,8 @@
 app-sidebar {
   width: var(--layout-sidebar-width);
   position: relative;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 app-sidebar[side='right'] {
@@ -37,4 +39,27 @@ app-sidebar .sidebar-interplay {
 
 app-sidebar .interplay-root {
   min-height: 0;
+}
+
+app-sidebar .preview-snapshot {
+  position: absolute;
+  opacity: 0;
+  color: #fff;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
+  background: rgba(0,0,0,0.25);
+  border-radius: 100%;
+  padding: 0.25rem;
+  transition: opacity 0.125s;
+}
+
+app-sidebar:hover .preview-snapshot {
+  opacity: 1;
+}
+
+app-sidebar .preview-snapshot:hover {
+  background: rgba(0,0,0,0.75);
 }

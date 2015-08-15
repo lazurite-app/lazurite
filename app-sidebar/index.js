@@ -1,4 +1,6 @@
 import SceneRenderer from 'scene-renderer'
+import Event from 'synthetic-dom-events'
+import findup from 'findup-element'
 import Interplay from 'interplay'
 import fit from 'canvas-fit'
 import vel from 'vel'
@@ -11,12 +13,28 @@ export default class AppSidebar extends window.HTMLElement {
     const el = vel((h, state) => h.html(html))
     this.appendChild(el())
     this.interplay = Interplay()
+
+    this.addEventListener('click', e => {
+      const el = findup(e.target, el => (
+        el.hasAttribute && el.hasAttribute('data-snapshot')
+      ))
+
+      if (!el) return
+
+      this.renderer.captureSnapshot(function (err) {
+        if (err) return
+        this.dispatchEvent(Event('app-sidebar-snapshot'))
+      })
+    }, false)
   }
 
   attachedCallback () {
     if (!this.canvas) {
       const canvas = this.canvas = setupCanvas(this.querySelector('canvas'))
-      const gl = this.gl = canvas.getContext('webgl')
+      const gl = this.gl = canvas.getContext('webgl', {
+        preserveDrawingBuffer: true
+      })
+
       const control = this.querySelector('.sidebar-interplay')
 
       control.appendChild(this.interplay.el)

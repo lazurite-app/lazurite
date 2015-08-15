@@ -24,16 +24,26 @@ app-scene-select > ul > li {
   display: inline-block;
   float: left;
   background: color(var(--color-darkish) alpha(0.5));
+  background-position: 50% 50%;
+  background-size: cover;
   margin: 1px;
   box-sizing: border-box;
   width: calc(25% - 2px);
   height: 33%;
+  border: 1px solid var(--color-darkish);
+  box-shadow: 1px 1px color(var(--color-darkest) alpha(0.25));
 }
 
 app-scene-select > ul > li label {
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
+  font-family: 'Fantasque Sans Mono', monospace;
+  font-weight: 100;
+  font-size: 0.7rem;
+  text-shadow: 0 1px 1px #000;
+  cursor: pointer;
+  color: #fff;
 }
 
 app-scene-select > ul > li:after {

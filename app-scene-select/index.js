@@ -2,12 +2,22 @@ import { scenes } from 'scene-renderer'
 import Event from 'synthetic-dom-events'
 import vel from 'vel'
 
+const sceneImages = scenes.map(name => {
+  try {
+    return require.resolve(name + '/screenshot.jpg')
+  } catch(e) {
+    return null
+  }
+})
+
 export default class AppSceneSelect extends window.HTMLElement {
   createdCallback () {
     const self = this
 
     const el = vel(render)
     this.appendChild(el())
+
+    window.addEventListener('app-sidebar-snapshot', e => el(), false)
 
     // render dom nodes
     // null -> null
@@ -32,7 +42,10 @@ export default class AppSceneSelect extends window.HTMLElement {
 
       for (var i = 0; i < scenes.length; i++) {
         list.push(h('li', {
-          'ev-click': dispatch(scenes[i])
+          'ev-click': dispatch(scenes[i]),
+          'style': {
+            'background-image': sceneImages[i] ? 'url('+sceneImages[i]+'?'+Date.now()+')' : 'none'
+          }
         }, h('label', scenes[i])))
       }
 
