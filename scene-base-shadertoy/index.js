@@ -6,6 +6,7 @@ const Bang = require('interplay-bang')
 module.exports = Scene
 
 function Scene (gl, scene) {
+  var resolution = new Float32Array([0, 0, 0])
   var shader = null
   var keys = []
   var vert
@@ -27,9 +28,14 @@ function Scene (gl, scene) {
   scene.on('step', function (time) {
     if (!shader) return
 
-    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight)
+    gl.viewport(0, 0,
+      resolution[0] = gl.drawingBufferWidth,
+      resolution[1] = gl.drawingBufferHeight
+    )
+
     shader.bind()
     shader.uniforms.iGlobalTime = scene.time
+    shader.uniforms.iResolution = resolution
 
     for (var i = 0; i < keys.length; i++) {
       var key = keys[i]

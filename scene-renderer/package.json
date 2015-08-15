@@ -12,6 +12,9 @@
     "chokidar": "^1.0.5",
     "events": "^1.0.2",
     "glslify": "^2.2.1",
+    "glslify-bundle": "^2.0.4",
+    "glslify-deps": "^1.2.1",
+    "glslify-resolve-remote": "^2.1.0",
     "inherits": "^2.0.1",
     "raf": "^3.0.0",
     "shallow-copy": "0.0.1"

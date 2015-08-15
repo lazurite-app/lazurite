@@ -1,3 +1,6 @@
+const resolver = require('glslify-resolve-remote')({})
+const bundle = require('glslify-bundle')
+const deps = require('glslify-deps')
 const inherits = require('inherits')
 const copy = require('shallow-copy')
 const chokidar = require('chokidar')
@@ -75,7 +78,6 @@ function SceneWrapper (gl, name, interplay) {
   Emitter.call(this)
   gl.sceneCache[name] = this
 
-
   const sceneLocation = Path.dirname(require.resolve(name + '/package.json'))
   const sceneShaders = this.shaders = {}
   const scenePkg = require(name + '/package.json')
@@ -121,12 +123,21 @@ function SceneWrapper (gl, name, interplay) {
 
     rebundle(true)
     function rebundle (initial) {
-      glslify.bundle(path, {}, function (err, result, files) {
+      const depper = deps({
+        resolve: resolver,
+        cwd: sceneLocation
+      })
+
+      depper.add(path, function (err, tree) {
         if (err && initial) return next(err)
         if (err) throw err
-        if (files) files.forEach(addFile)
+
+        var result = bundle(tree)
+
         shaderSource = result
         sceneShaders[key].emit('change')
+        tree.forEach(d => addFile(d.file))
+
         if (initial) next()
       })
     }
