@@ -3,6 +3,13 @@ app-scene-select {
   display: block;
 }
 
+app-scene-select,
+app-scene-select label {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
 app-scene-select ul {
   list-style-type: none;
   position: relative;
