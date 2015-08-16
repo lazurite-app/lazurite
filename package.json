@@ -34,6 +34,7 @@
     "scene-blob": "file:scene-blob",
     "scene-renderer": "file:scene-renderer",
     "scene-road-to-hell": "file:scene-road-to-hell",
+    "scene-tunnel": "file:scene-tunnel",
     "scene-warp": "file:scene-warp",
     "serve": "^1.4.0",
     "watchify": "^3.2.3",

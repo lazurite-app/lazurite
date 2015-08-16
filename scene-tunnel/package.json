@@ -1,0 +1,41 @@
+{
+  "name": "scene-tunnel",
+  "version": "1.0.0",
+  "description": "Endless Tunnel",
+  "scene": "scene-base-shadertoy",
+  "parameters": {
+    "noiseAmplitude": {
+      "type": "range",
+      "label": "Noise Amplitude",
+      "value": 0.0,
+      "min": 0,
+      "max": 0.35,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "outerRadius": {
+      "type": "range",
+      "label": "Outer Radius",
+      "value": 1.5,
+      "min": 0,
+      "max": 3,
+      "keys": {
+        "up": "Y",
+        "down": "T"
+      }
+    },
+    "tubeRadius": {
+      "type": "range",
+      "label": "Tube Radius",
+      "value": 0.155,
+      "min": 0,
+      "max": 1,
+      "keys": {
+        "up": "M",
+        "down": "N"
+      }
+    }
+  }
+}

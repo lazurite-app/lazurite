@@ -5,7 +5,8 @@
   "scenes": [
     "scene-blob",
     "scene-warp",
-    "scene-road-to-hell"
+    "scene-road-to-hell",
+    "scene-tunnel"
   ],
   "dependencies": {
     "after": "^0.8.1",
