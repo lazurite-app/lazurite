@@ -16,6 +16,7 @@ body {
 }
 
 @import './typicons';
+@import 'app-midi';
 @import 'app-main';
 @import 'app-main-preview';
 @import 'app-sidebar';

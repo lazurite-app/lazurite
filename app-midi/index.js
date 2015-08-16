@@ -15,6 +15,13 @@ export default class AppMIDI extends window.HTMLElement {
     function render (h, state) {
       const { inputs, outputs } = state
 
+      if (inputs.length + outputs.length <= 0) {
+        return h('div.missing', [
+          h('span.icon.typcn.typcn-warning-outline'),
+          h('div', 'No MIDI devices detected')
+        ])
+      }
+
       return h('div', [
         h('label', 'MIDI Input Device'),
         h('select', inputs.map(d => h('option', d.name))),
