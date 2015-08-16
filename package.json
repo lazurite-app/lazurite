@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "app-main": "file:app-main",
+    "app-midi": "file:app-midi",
     "app-scene-select": "file:app-scene-select",
     "app-sidebar": "file:app-sidebar",
     "app-styles": "file:app-styles",

@@ -1,0 +1,10 @@
+{
+  "name": "app-midi",
+  "version": "1.0.0",
+  "dependencies": {
+    "array-from": "^1.0.0",
+    "launch-control-xl": "^1.0.2",
+    "sliced": "0.0.5",
+    "vel": "^1.1.4"
+  }
+}
