@@ -18,7 +18,7 @@
     },
     "noiseDetail": {
       "type": "range",
-      "label": "Noise Amplitude",
+      "label": "Noise Resolution",
       "value": 1,
       "min": -2,
       "max": 2,
