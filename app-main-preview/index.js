@@ -1,6 +1,9 @@
 import Event from 'synthetic-dom-events'
+import triangle from 'a-big-triangle'
 import Renderer from 'scene-renderer'
+import Shader from 'gl-shader'
 import fit from 'canvas-fit'
+import FBO from 'gl-fbo'
 import raf from 'raf'
 import vel from 'vel'
 
@@ -31,6 +34,37 @@ export default class AppMainPreview extends window.HTMLElement {
         manual: true
       }).use('scene-warp')
     ))
+
+    this.frames = this.renderers.map(r => FBO(this.gl, [2, 2]))
+    this.shader = Shader(this.gl, `
+      precision mediump float;
+
+      attribute vec2 position;
+      varying vec2 uv;
+
+      void main() {
+        uv = position * 0.5 + 0.5;
+        gl_Position = vec4(position, 1, 1);
+      }
+    `, `
+      precision mediump float;
+
+      uniform vec2 iResolution;
+      varying vec2 uv;
+      uniform sampler2D from;
+      uniform sampler2D to;
+      uniform float progress;
+
+      void main() {
+        gl_FragColor = mix(
+          texture2D(from, uv),
+          texture2D(to, uv),
+          progress
+        );
+
+        gl_FragColor.a = 1.0;
+      }
+    `)
 
     const el = vel(render)
     const state = {
@@ -101,11 +135,29 @@ export default class AppMainPreview extends window.HTMLElement {
     raf(this.tick) // TODO: only run when visible
 
     const { gl } = this
+    const shape = [gl.drawingBufferWidth, gl.drawingBufferHeight]
 
+    this.frames[0].bind()
+    this.frames[0].shape = shape
     gl.clearColor(0, 0, 0, 1)
     gl.clear(gl.COLOR_BUFFER_BIT)
-
+    gl.viewport(0, 0, shape[0], shape[1])
     this.renderers[0].tick()
+
+    this.frames[1].bind()
+    this.frames[1].shape = shape
+    gl.clearColor(0, 0, 0, 1)
+    gl.clear(gl.COLOR_BUFFER_BIT)
+    gl.viewport(0, 0, shape[0], shape[1])
     this.renderers[1].tick()
+
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null)
+    gl.viewport(0, 0, shape[0], shape[1])
+    this.shader.bind()
+    this.shader.uniforms.iResolution = shape
+    this.shader.uniforms.from = this.frames[0].color[0].bind(0)
+    this.shader.uniforms.to = this.frames[1].color[0].bind(1)
+    this.shader.uniforms.progress = Math.sin(Date.now() / 1000) * 0.5 + 0.5
+    triangle(gl)
   }
 }
