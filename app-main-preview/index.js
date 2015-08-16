@@ -27,7 +27,8 @@ export default class AppMainPreview extends window.HTMLElement {
       Renderer(this.gl, {
         left: !i,
         right: !!i,
-        values: sidebar.values
+        values: sidebar.values,
+        manual: true
       }).use('scene-warp')
     ))
 
