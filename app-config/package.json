@@ -1,0 +1,8 @@
+{
+  "name": "app-config",
+  "version": "1.0.0",
+  "dependencies": {
+    "sliced": "0.0.5",
+    "vel": "^1.1.4"
+  }
+}

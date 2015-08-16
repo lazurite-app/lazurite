@@ -2,6 +2,11 @@
 
 html {
   background: var(--color-darker);
+  font-family: 'Fantasque Sans Mono', monospace;
+}
+
+input, select, textarea, option {
+  font-family: 'Fantasque Sans Mono', monospace;
 }
 
 body {
@@ -14,6 +19,7 @@ body {
 @import 'app-main';
 @import 'app-sidebar';
 @import 'app-scene-select';
+@import 'app-config';
 
 /**
  * For modern browsers

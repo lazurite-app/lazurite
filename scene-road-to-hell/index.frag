@@ -51,7 +51,7 @@ float draw_scene(vec3 p)
 void main()
   {
   vec2 position=(gl_FragCoord.xy/iResolution.xy);
-  position.y *= iResolution.x/iResolution.y;
+  position.x *= iResolution.x/iResolution.y;
   vec2 p=-1.0+2.0*position;
   vec3 dir=normalize(vec3(p*vec2(1.77,1.0),1.0));    // screen ratio (x,y) fov (z)
   dir.yz=rotate(dir.yz,PI*0.5*sin(PI*speed*0.125));  // rotation x

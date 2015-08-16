@@ -1,0 +1,51 @@
+app-config {
+  display: block;
+  padding: 1rem;
+  padding-bottom: calc(1rem - 1.5rem);
+  border-top: 1px solid var(--color-darkish);
+  border-bottom: 1px solid var(--color-darkest);
+  box-shadow: 0 -1px var(--color-darkest), 0 +1px var(--color-darkish);
+  height: 30vh;
+  position: relative;
+}
+
+app-config app-config-panel {
+  padding: 1rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 1.75rem;
+}
+
+app-config > .panel-selection {
+  border-top: 1px solid var(--color-darkish);
+  box-shadow: 0 -1px var(--color-darkest);
+  position: absolute;
+  left: 0; bottom: 0;
+  right: 0;
+}
+app-config > .panel-selection > ul {
+  display: flex;
+  justify-content: center;
+}
+app-config > .panel-selection > ul > li {
+  color: var(--color-dark);
+  width: 1.75rem;
+  height: 2rem;
+  background: var(--color-darker);
+  text-align: center;
+  line-height: 2rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  font-weight: 100;
+}
+
+app-config > .panel-selection > ul > li:hover {
+  color: var(--color-lighter);
+}
+app-config > .panel-selection > ul > li.selected {
+  color: var(--color-dark);
+  background: var(--color-lighter);
+  border-top: 1px solid rgba(255,255,255,0.75);
+  border-bottom: 1px solid rgba(255,255,255,0.75);
+}

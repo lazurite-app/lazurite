@@ -12,6 +12,7 @@
     "postinstall": "linklocal && linklocal --list | bulk -c 'npm install --cache-min Infinity --production'"
   },
   "dependencies": {
+    "app-config": "file:app-config",
     "app-main": "file:app-main",
     "app-midi": "file:app-midi",
     "app-scene-select": "file:app-scene-select",

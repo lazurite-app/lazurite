@@ -12,13 +12,14 @@
       <section class="main-content">
         <app-scene-select></app-scene-select>
 
-        <app-config>
-          <app-config-panel>
+        <app-config selected="Preview">
+          <app-config-panel name="MIDI" icon="notes-outline">
             <app-midi></app-midi>
           </app-config-panel>
-
-          <app-config-panel>preview</app-config-panel>
-          <app-config-panel>audio input settings</app-config-panel>
+          <app-config-panel name="Preview" icon="eye-outline">
+          </app-config-panel>
+          <app-config-panel name="Audio" icon="volume">
+          </app-config-panel>
         </app-config>
 
         <app-post-select></app-post-select>
