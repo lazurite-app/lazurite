@@ -5,7 +5,7 @@ app-config {
   border-top: 1px solid var(--color-darkish);
   border-bottom: 1px solid var(--color-darkest);
   box-shadow: 0 -1px var(--color-darkest), 0 +1px var(--color-darkish);
-  height: 30vh;
+  height: calc(100vh - 4rem - 250px);
   position: relative;
 }
 
