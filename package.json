@@ -14,6 +14,7 @@
   "dependencies": {
     "app-config": "file:app-config",
     "app-main": "file:app-main",
+    "app-main-preview": "file:app-main-preview",
     "app-midi": "file:app-midi",
     "app-scene-select": "file:app-scene-select",
     "app-sidebar": "file:app-sidebar",

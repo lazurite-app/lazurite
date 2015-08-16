@@ -17,6 +17,7 @@ body {
 
 @import './typicons';
 @import 'app-main';
+@import 'app-main-preview';
 @import 'app-sidebar';
 @import 'app-scene-select';
 @import 'app-config';

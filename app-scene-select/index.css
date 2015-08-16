@@ -1,6 +1,9 @@
 app-scene-select {
   padding: 1rem;
   display: block;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 250px;
 }
 
 app-scene-select,
@@ -14,8 +17,6 @@ app-scene-select ul {
   list-style-type: none;
   position: relative;
   height: 250px;
-  overflow-x: hidden;
-  overflow-y: scroll;
 }
 
 app-scene-select > ul > li {
@@ -32,6 +33,17 @@ app-scene-select > ul > li {
   height: 33%;
   border: 1px solid var(--color-darkish);
   box-shadow: 1px 1px color(var(--color-darkest) alpha(0.25));
+}
+
+@media screen and (min-width: 1280px) {
+  app-scene-select > ul > li {
+    width: calc(20% - 2px);
+  }
+}
+@media screen and (max-width: 1000px) {
+  app-scene-select > ul > li {
+    width: calc(33% - 2px);
+  }
 }
 
 app-scene-select > ul > li label {

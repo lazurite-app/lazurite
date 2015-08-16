@@ -1,0 +1,10 @@
+{
+  "name": "app-main-preview",
+  "version": "1.0.0",
+  "dependencies": {
+    "canvas-fit": "^1.4.0",
+    "raf": "^3.1.0",
+    "synthetic-dom-events": "^0.2.2",
+    "vel": "^1.1.4"
+  }
+}

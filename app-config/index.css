@@ -14,7 +14,7 @@ app-config app-config-panel {
   overflow-x: hidden;
   overflow-y: auto;
   position: absolute;
-  top: 0; left: 0; bottom: 1.75rem; right: 0;
+  top: 0; left: 0; bottom: 2.25rem; right: 0;
 }
 
 app-config > .panel-selection {

@@ -1,17 +1,17 @@
 precision mediump float;
 
 uniform float iGlobalTime;
+uniform vec3  iResolution;
 uniform float uChannelOffset;
 uniform float uWarp;
 uniform float uWeird;
 
-vec2 iResolution = vec2(280.0);
 
 float n(float g) { return g * .5 + .5; }
 
 void main() {
   vec2 uv = 2. * gl_FragCoord.xy / iResolution.xy - 1.;
-  vec2 p  = vec2(iResolution.x/iResolution.y, 1) * uv;
+  vec2 p  = vec2(1, iResolution.y/iResolution.x) * uv;
   float a = atan(p.y, p.x);
   float l = length(p);
   vec3  c = vec3(0);

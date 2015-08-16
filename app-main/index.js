@@ -5,6 +5,7 @@ document.registerElement('app-midi', require('app-midi'))
 document.registerElement('app-config', require('app-config'))
 document.registerElement('app-sidebar', require('app-sidebar'))
 document.registerElement('app-scene-select', require('app-scene-select'))
+document.registerElement('app-main-preview', require('app-main-preview'))
 
 document.body.addEventListener('app-scene-select', e => {
   const sidebars = document.querySelectorAll('app-sidebar')

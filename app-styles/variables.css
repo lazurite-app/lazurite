@@ -13,5 +13,5 @@
   --color-blue: #57BEF1;
 
   --layout-sidebar-width: 280px;
-  --layout-preview-height: var(--layout-sidebar-width);
+  --layout-preview-height: calc(var(--layout-sidebar-width) * 3 / 4);
 }
