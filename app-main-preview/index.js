@@ -35,7 +35,7 @@ export default class AppMainPreview extends window.HTMLElement {
     const el = vel(render)
     const state = {
       smallScale: 4,
-      largeScale: 4
+      largeScale: 8
     }
 
     this.appendChild(update(state))
@@ -55,6 +55,7 @@ export default class AppMainPreview extends window.HTMLElement {
               update()
             }
           }, [
+            h('option', { value: 8, selected: 8 === state.smallScale }, '8x'),
             h('option', { value: 4, selected: 4 === state.smallScale }, '4x'),
             h('option', { value: 2, selected: 2 === state.smallScale }, '2x'),
             h('option', { value: 1, selected: 1 === state.smallScale }, '1x'),
@@ -71,6 +72,7 @@ export default class AppMainPreview extends window.HTMLElement {
               update()
             }
           }, [
+            h('option', { value: 4, selected: 8 === state.largeScale }, '8x'),
             h('option', { value: 4, selected: 4 === state.largeScale }, '4x'),
             h('option', { value: 2, selected: 2 === state.largeScale }, '2x'),
             h('option', { value: 1, selected: 1 === state.largeScale }, '1x'),
