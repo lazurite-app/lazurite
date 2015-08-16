@@ -29,25 +29,32 @@ function SceneRenderer (gl, options) {
   this.gl = gl
   this.gl.sceneCache = {}
   this.currentLocation = null
+  this.manual = !!options.manual
 
   const interplay = this.interplay = options.interplay
+  const values = this.values = options.values || (interplay ? interplay.values : {})
+
   const location = (
     (options.left && KeyboardEvent.DOM_KEY_LOCATION_LEFT) ||
     (options.right && KeyboardEvent.DOM_KEY_LOCATION_RIGHT)
   )
 
   this.tick = this.tick.bind(this)
-  this.tick()
+  if (!this.manual) {
+    this.tick()
+  }
 
-  window.addEventListener('keydown', function (e) {
-    if (e.keyCode !== SHIFT) return
-    interplay.enabled = e.location === location
-  }, false)
+  if (interplay) {
+    window.addEventListener('keydown', function (e) {
+      if (e.keyCode !== SHIFT) return
+      interplay.enabled = e.location === location
+    }, false)
 
-  window.addEventListener('keyup', function (e) {
-    if (e.keyCode !== SHIFT) return
-    interplay.enabled = true
-  })
+    window.addEventListener('keyup', function (e) {
+      if (e.keyCode !== SHIFT) return
+      interplay.enabled = true
+    })
+  }
 }
 
 SceneRenderer.scenes = require('./package.json').scenes
@@ -57,7 +64,7 @@ SceneRenderer.titles = SceneRenderer.scenes.map(function (scene) {
 })
 
 SceneRenderer.prototype.tick = function tick () {
-  raf(this.tick)
+  if (!this.manual) raf(this.tick)
   if (!this.current) return
   this.current.emit('step', (Date.now() - start) / 1000)
 }
@@ -67,8 +74,11 @@ SceneRenderer.prototype.use = function use (scene) {
     this.current.disable()
   }
 
-  this.interplay.clear()
-  this.current = SceneWrapper(this.gl, scene, this.interplay)
+  if (this.interplay) {
+    this.interplay.clear()
+  }
+
+  this.current = SceneWrapper(this.gl, scene, this.interplay, this.values)
   this.current.enable()
 
   return this
@@ -89,10 +99,10 @@ SceneRenderer.prototype.captureSnapshot = function (done) {
 }
 
 inherits(SceneWrapper, Emitter)
-function SceneWrapper (gl, name, interplay) {
+function SceneWrapper (gl, name, interplay, values) {
   if (gl.sceneCache[name]) return gl.sceneCache[name]
   if (!(this instanceof SceneWrapper)) {
-    return new SceneWrapper(gl, name, interplay)
+    return new SceneWrapper(gl, name, interplay, values)
   }
 
   Emitter.call(this)
@@ -106,7 +116,7 @@ function SceneWrapper (gl, name, interplay) {
   const params = scenePkg.parameters
 
   this.location = sceneLocation
-  this.parameters = interplay.values
+  this.parameters = values
   this.bootstrap = addParams.bind(this, interplay, params)
 
   const shaders = basePkg.shaders || {}
@@ -198,6 +208,8 @@ const types = {
 }
 
 function addParams (interplay, params) {
+  if (!interplay) return
+
   Object.keys(params).forEach(function (key) {
     const param = copy(params[key])
     const Type = types[param.type]

@@ -1,4 +1,5 @@
 import Event from 'synthetic-dom-events'
+import Renderer from 'scene-renderer'
 import fit from 'canvas-fit'
 import raf from 'raf'
 import vel from 'vel'
@@ -17,9 +18,22 @@ export default class AppMainPreview extends window.HTMLElement {
     this.appendChild(this.wrap)
     window.addEventListener('resize', this.fit, false)
 
+    this.sidebars = [
+      document.querySelectorAll('app-sidebar')[0],
+      document.querySelectorAll('app-sidebar')[1]
+    ]
+
+    this.renderers = this.sidebars.map((sidebar, i) => (
+      Renderer(this.gl, {
+        left: !i,
+        right: !!i,
+        values: sidebar.values
+      }).use('scene-warp')
+    ))
+
     const el = vel(render)
     const state = {
-      smallScale: 2,
+      smallScale: 4,
       largeScale: 4
     }
 
@@ -70,9 +84,9 @@ export default class AppMainPreview extends window.HTMLElement {
         data: state
       }))
 
-      var scale = state.largeScale
+      var scale = 1 / state.largeScale
       if (scale !== self.fit.scale) {
-        self.fit.scale = state.largeScale
+        self.fit.scale = scale
         self.fit()
       }
 
@@ -87,5 +101,8 @@ export default class AppMainPreview extends window.HTMLElement {
 
     gl.clearColor(0, 0, 0, 1)
     gl.clear(gl.COLOR_BUFFER_BIT)
+
+    this.renderers[0].tick()
+    this.renderers[1].tick()
   }
 }

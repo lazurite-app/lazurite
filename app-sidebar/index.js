@@ -13,6 +13,7 @@ export default class AppSidebar extends window.HTMLElement {
     const el = vel((h, state) => h.html(html))
     this.appendChild(el())
     this.interplay = Interplay()
+    this.values = this.interplay.values
     this.fit = null
 
     this.addEventListener('click', e => {
