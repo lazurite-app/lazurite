@@ -30,6 +30,7 @@ function SceneRenderer (gl, options) {
   this.gl.sceneCache = {}
   this.currentLocation = null
   this.manual = !!options.manual
+  this.cache = options.cache || {}
 
   const interplay = this.interplay = options.interplay
   const values = this.values = options.values || (interplay ? interplay.values : {})
@@ -78,8 +79,9 @@ SceneRenderer.prototype.use = function use (scene) {
     this.interplay.clear()
   }
 
-  this.current = SceneWrapper(this.gl, scene, this.interplay, this.values)
+  this.current = SceneWrapper(this.gl, scene, this.interplay, this.values, this.cache)
   this.current.enable()
+  this.emit('change', scene)
 
   return this
 }
@@ -99,14 +101,16 @@ SceneRenderer.prototype.captureSnapshot = function (done) {
 }
 
 inherits(SceneWrapper, Emitter)
-function SceneWrapper (gl, name, interplay, values) {
-  if (gl.sceneCache[name]) return gl.sceneCache[name]
+function SceneWrapper (gl, name, interplay, values, cache) {
+  cache = cache || (gl.sceneCache = {})
+
+  if (cache[name]) return gl.sceneCache[name]
   if (!(this instanceof SceneWrapper)) {
     return new SceneWrapper(gl, name, interplay, values)
   }
 
   Emitter.call(this)
-  gl.sceneCache[name] = this
+  cache[name] = this
 
   const sceneLocation = Path.dirname(require.resolve(name + '/package.json'))
   const sceneShaders = this.shaders = {}

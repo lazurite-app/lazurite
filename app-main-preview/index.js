@@ -24,7 +24,13 @@ export default class AppMainPreview extends window.HTMLElement {
     this.sidebars = [
       document.querySelectorAll('app-sidebar')[0],
       document.querySelectorAll('app-sidebar')[1]
-    ]
+    ].map((el, i) => {
+      el.addEventListener('app-sidebar-change-scene', e => {
+        this.renderers[i].use(e.scene)
+      }, false)
+
+      return el
+    })
 
     this.renderers = this.sidebars.map((sidebar, i) => (
       Renderer(this.gl, {

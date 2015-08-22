@@ -53,6 +53,12 @@ export default class AppSidebar extends window.HTMLElement {
         left: this.getAttribute('side') === 'left',
         right: this.getAttribute('side') === 'right',
         interplay: this.interplay
+      }).on('change', name => {
+        this.dispatchEvent(Event('app-sidebar-change-scene', {
+          right: this.getAttribute('side') === 'right',
+          left: this.getAttribute('side') === 'left',
+          scene: name
+        }))
       }).use('scene-warp')
     }
   }

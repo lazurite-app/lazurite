@@ -8,20 +8,17 @@ module.exports = Scene
 function Scene (gl, scene) {
   var resolution = new Float32Array([0, 0, 0])
   var shader = null
-  var keys = []
   var vert
   var frag
 
   scene.on('init', function (time) {
     frag = scene.shaders.frag.on('change', updateShader)
     vert = scene.shaders.vert.on('change', updateShader)
-    keys = Object.keys(scene.parameters)
     shader = Shader(gl, vert, frag)
 
     function updateShader () {
       if (!shader) return
       shader.update(vert, frag)
-      keys = Object.keys(scene.parameters)
     }
   })
 
@@ -37,8 +34,8 @@ function Scene (gl, scene) {
     shader.uniforms.iGlobalTime = scene.time
     shader.uniforms.iResolution = resolution
 
-    for (var i = 0; i < keys.length; i++) {
-      var key = keys[i]
+    for (var key in scene.parameters) {
+      if (!scene.parameters.hasOwnProperty(key)) continue
       shader.uniforms[key] = scene.parameters[key]
     }
 
