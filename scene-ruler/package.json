@@ -1,0 +1,30 @@
+{
+  "name": "scene-ruler",
+  "version": "1.0.0",
+  "description": "Basic Ruler Test",
+  "scene": "scene-base-shadertoy",
+  "parameters": {
+    "objectRaise": {
+      "type": "range",
+      "label": "Object Raise",
+      "value": 0.25,
+      "min": -1,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "sphereBlend": {
+      "type": "range",
+      "label": "Sphere Blend",
+      "value": 0,
+      "min": -1,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    }
+  }
+}
