@@ -142,20 +142,27 @@ export default class AppMainPreview extends window.HTMLElement {
 
     const { gl } = this
     const shape = [gl.drawingBufferWidth, gl.drawingBufferHeight]
+    var progress = Math.sin(Date.now() / 1000) * 2
+    if (progress > 1) progress = 1
+    if (progress < 0) progress = 0
 
-    this.frames[0].bind()
-    this.frames[0].shape = shape
-    gl.clearColor(0, 0, 0, 1)
-    gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.viewport(0, 0, shape[0], shape[1])
-    this.renderers[0].tick()
+    if (progress !== 1) {
+      this.frames[0].bind()
+      this.frames[0].shape = shape
+      gl.clearColor(0, 0, 0, 1)
+      gl.clear(gl.COLOR_BUFFER_BIT)
+      gl.viewport(0, 0, shape[0], shape[1])
+      this.renderers[0].tick()
+    }
 
-    this.frames[1].bind()
-    this.frames[1].shape = shape
-    gl.clearColor(0, 0, 0, 1)
-    gl.clear(gl.COLOR_BUFFER_BIT)
-    gl.viewport(0, 0, shape[0], shape[1])
-    this.renderers[1].tick()
+    if (progress !== 0) {
+      this.frames[1].bind()
+      this.frames[1].shape = shape
+      gl.clearColor(0, 0, 0, 1)
+      gl.clear(gl.COLOR_BUFFER_BIT)
+      gl.viewport(0, 0, shape[0], shape[1])
+      this.renderers[1].tick()
+    }
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
     gl.viewport(0, 0, shape[0], shape[1])
@@ -163,7 +170,7 @@ export default class AppMainPreview extends window.HTMLElement {
     this.shader.uniforms.iResolution = shape
     this.shader.uniforms.from = this.frames[0].color[0].bind(0)
     this.shader.uniforms.to = this.frames[1].color[0].bind(1)
-    this.shader.uniforms.progress = Math.sin(Date.now() / 1000) * 0.5 + 0.5
+    this.shader.uniforms.progress = progress
     triangle(gl)
   }
 }
