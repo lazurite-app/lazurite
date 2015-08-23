@@ -1,4 +1,5 @@
 import Event from 'synthetic-dom-events'
+import FinalPass from 'app-final-pass'
 import triangle from 'a-big-triangle'
 import Renderer from 'scene-renderer'
 import Shader from 'gl-shader'
@@ -16,6 +17,7 @@ export default class AppMainPreview extends window.HTMLElement {
 
     this.canvas = this.wrap.appendChild(document.createElement('canvas'))
     this.gl = this.canvas.getContext('webgl')
+    this.finalPass = FinalPass(this.gl)
 
     this.fit = fit(this.canvas)
     this.appendChild(this.wrap)
@@ -142,7 +144,7 @@ export default class AppMainPreview extends window.HTMLElement {
 
     const { gl } = this
     const shape = [gl.drawingBufferWidth, gl.drawingBufferHeight]
-    var progress = Math.sin(Date.now() / 1000) * 2
+    var progress = Math.sin(Date.now() / 4000) * 2
     if (progress > 1) progress = 1
     if (progress < 0) progress = 0
 
@@ -165,12 +167,10 @@ export default class AppMainPreview extends window.HTMLElement {
     }
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
-    gl.viewport(0, 0, shape[0], shape[1])
-    this.shader.bind()
-    this.shader.uniforms.iResolution = shape
-    this.shader.uniforms.from = this.frames[0].color[0].bind(0)
-    this.shader.uniforms.to = this.frames[1].color[0].bind(1)
-    this.shader.uniforms.progress = progress
-    triangle(gl)
+    this.finalPass(
+      this.frames[0].color[0],
+      this.frames[1].color[0],
+      progress
+    )
   }
 }

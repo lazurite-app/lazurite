@@ -1,0 +1,9 @@
+{
+  "name": "app-final-pass",
+  "version": "1.0.0",
+  "dependencies": {
+    "a-big-triangle": "^1.0.2",
+    "gl-shader": "^4.0.5",
+    "glslify": "^2.2.1"
+  }
+}
