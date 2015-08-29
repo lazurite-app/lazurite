@@ -1,4 +1,4 @@
-const resolver = require('glslify-resolve-remote')({})
+const resolver = require('glslify-resolve-remote')({ offline: true })
 const bundle = require('glslify-bundle')
 const deps = require('glslify-deps')
 const inherits = require('inherits')

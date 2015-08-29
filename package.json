@@ -39,6 +39,7 @@
     "scene-renderer": "file:scene-renderer",
     "scene-road-to-hell": "file:scene-road-to-hell",
     "scene-ruler": "file:scene-ruler",
+    "scene-tracks": "file:scene-tracks",
     "scene-tunnel": "file:scene-tunnel",
     "scene-warp": "file:scene-warp",
     "serve": "^1.4.0",
