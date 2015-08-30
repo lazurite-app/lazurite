@@ -1,5 +1,6 @@
 const Browser = require('browser-window')
-const signalhub = require('signalhub/server')
+const HubServer = require('signalhub/server')
+const signalhub = require('signalhub')
 const querystring = require('querystring')
 const app = require('app')
 const ipc = require('ipc')
@@ -7,15 +8,22 @@ const ipc = require('ipc')
 app.once('ready', appReady)
 
 function appReady () {
-  signalhub({
+  var hubClient
+  var hubServer = HubServer({
     maxBroadcasts: 100
   }).on('subscribe', function (channel) {
     console.log('subscribe: %s', channel)
-  }).on('broadcast', function (channel, message) {
-    console.log('broadcast: %s (%d)', channel, message.length)
+    hubClient.broadcast('fresh', channel)
+  }).on('publish', function (channel, message) {
+    console.log('publish: %s (%s)', channel, message)
   }).listen(function (err) {
     if (err) throw err
-    hubReady(this.address().port)
+
+    const port = this.address().port
+    const uri = `http://localhost:${port}`
+
+    hubClient = signalhub('lazurite-client', [ uri ])
+    hubReady(port)
   })
 }
 

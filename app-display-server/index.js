@@ -11,12 +11,31 @@ export default class AppDisplayServer extends window.HTMLElement {
       `http://localhost:${hubPort}`
     ])
 
+    var lastScene = {
+      right: {},
+      left: {}
+    }
+
     this.addEventListener('app-sidebar-update', e => {
-      this.client.broadcast('/updates', {
+      this.client.broadcast('updates', {
         value: e.next,
         side: e.side,
         key: e.key
       })
     }, true)
+
+    this.addEventListener('app-sidebar-reset', e => {
+      this.client.broadcast('reset', lastScene[e.side] = {
+        scene: e.scene,
+        data: e.data,
+        side: e.side
+      })
+    }, true)
+
+    this.client.subscribe('fresh').on('data', channel => {
+      if (channel !== 'lazurite-client/updates') return
+      this.client.broadcast('reset', lastScene.left)
+      this.client.broadcast('reset', lastScene.right)
+    })
   }
 }

@@ -64,19 +64,30 @@ export default class AppSidebar extends window.HTMLElement {
       }, true)
 
       const control = this.querySelector('.sidebar-interplay')
+      const right = this.getAttribute('side') === 'right'
+      const left = this.getAttribute('side') === 'left'
+      const resetSignal = name => {
+        this.dispatchEvent(Event('app-sidebar-reset', {
+          side: this.getAttribute('side'),
+          data: this.values,
+          scene: name
+        }))
+      }
 
       control.appendChild(this.interplay.el)
       this.renderer = SceneRenderer(gl, {
-        left: this.getAttribute('side') === 'left',
-        right: this.getAttribute('side') === 'right',
+        left, right,
         interplay: this.interplay
       }).on('change', name => {
         this.dispatchEvent(Event('app-sidebar-change-scene', {
-          right: this.getAttribute('side') === 'right',
-          left: this.getAttribute('side') === 'left',
+          left, right,
           scene: name
         }))
+
+        resetSignal(name)
       }).use('scene-warp')
+
+      resetSignal('scene-warp')
     }
   }
 }

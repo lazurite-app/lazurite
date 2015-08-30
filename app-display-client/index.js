@@ -8,14 +8,19 @@ const hubPort = querystring.parse(String(
 
 export default class AppDisplayClient extends window.HTMLElement {
   createdCallback () {
-    signalhub('lazurite-client', [ `http://localhost:${hubPort}` ])
-      .subscribe('/updates')
-      .on('data', data => {
-        console.log(data)
+    this.client = signalhub('lazurite-client', [
+      `http://localhost:${hubPort}`
+    ])
 
-        this.dispatchEvent(Event('lazurite-client-data', {
-          data: data
-        }))
-      })
+    this.client.subscribe('updates').on('data', data => {
+      console.log('update', data)
+      this.dispatchEvent(Event('lazurite-client-data', {
+        data: data
+      }))
+    })
+
+    this.client.subscribe('reset').on('data', e => {
+      console.log('reset', e)
+    })
   }
 }

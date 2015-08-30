@@ -82,8 +82,8 @@ SceneRenderer.prototype.use = function use (scene) {
   }
 
   this.current = SceneWrapper(this.gl, scene, this.interplay, this.values, this.cache)
+  this.current.once('init', _ => this.emit('change', scene))
   this.current.enable()
-  this.emit('change', scene)
 
   return this
 }
@@ -121,6 +121,7 @@ function SceneWrapper (gl, name, interplay, values, cache) {
   const base = require(scenePkg.scene)
   const params = scenePkg.parameters
 
+  this.name = name
   this.location = sceneLocation
   this.parameters = values
   this.bootstrap = addParams.bind(this, interplay, params)
