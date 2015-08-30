@@ -31,6 +31,7 @@ function SceneRenderer (gl, options) {
   this.currentLocation = null
   this.manual = !!options.manual
   this.cache = options.cache || {}
+  this.paused = false
 
   const interplay = this.interplay = options.interplay
   const values = this.values = options.values || (interplay ? interplay.values : {})
@@ -66,6 +67,7 @@ SceneRenderer.titles = SceneRenderer.scenes.map(function (scene) {
 
 SceneRenderer.prototype.tick = function tick () {
   if (!this.manual) raf(this.tick)
+  if (this.paused) return
   if (!this.current) return
   this.current.emit('step', (Date.now() - start) / 1000)
 }

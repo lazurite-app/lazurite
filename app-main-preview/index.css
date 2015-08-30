@@ -12,3 +12,26 @@ app-main-preview .preview {
   right: 50%;
   bottom: 0;
 }
+
+app-main-preview fieldset {
+  padding: 0.75rem 0;
+  color: var(--color-lighter);
+  font-size: 0.9rem;
+  position: relative;
+}
+app-main-preview fieldset label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+app-main-preview fieldset select {
+  display: block;
+  width: 100%;
+}
+
+app-main-preview fieldset:first-child {
+  padding-top: 0;
+}
+app-main-preview fieldset:last-child {
+  border: 0;
+  box-shadow: none;
+}

@@ -29,11 +29,10 @@ void main() {
 
 function finalPass (gl) {
   var passthroughShader = Shader(gl, vert, pfrag)
-  var opts = { transition: 'doom' }
+  var opts = { transition: 'fade' }
   var transitionShader
 
   render.transition = setTransition
-
 
   update(opts, updateShaders)
   return render

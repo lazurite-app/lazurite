@@ -39,6 +39,12 @@ export default class AppSidebar extends window.HTMLElement {
 
       window.addEventListener('resize', this.fit = fit(canvas), false)
       window.addEventListener('app-main-preview-settings', e => {
+        if ('smallEnabled' in e.data) {
+          console.log(
+            this.renderer.paused = !e.data.smallEnabled
+          )
+        }
+
         var scale = 1 / e.data.smallScale
         if (scale !== this.fit.scale) {
           this.fit.scale = scale
