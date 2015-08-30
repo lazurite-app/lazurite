@@ -6,29 +6,31 @@
     <link rel="stylesheet" href="bundle.css">
   </head>
   <body>
-    <main role="main" class="main">
-      <app-sidebar side="left"></app-sidebar>
+    <app-display-server>
+      <main role="main" class="main">
+        <app-sidebar side="left"></app-sidebar>
 
-      <section class="main-content">
-        <app-scene-select></app-scene-select>
+        <section class="main-content">
+          <app-scene-select></app-scene-select>
 
-        <app-config selected="Preview">
-          <app-config-panel name="MIDI" icon="notes-outline">
-            <app-midi></app-midi>
-          </app-config-panel>
-          <app-config-panel name="Preview" icon="eye-outline">
-            <app-main-preview>
-            </app-main-preview>
-          </app-config-panel>
-          <app-config-panel name="Audio" icon="volume">
-          </app-config-panel>
-          <app-config-panel name="Post-Processing" icon="film">
-          </app-config-panel>
-        </app-config>
-      </section>
+          <app-config selected="Preview">
+            <app-config-panel name="MIDI" icon="notes-outline">
+              <app-midi></app-midi>
+            </app-config-panel>
+            <app-config-panel name="Preview" icon="eye-outline">
+              <app-main-preview>
+              </app-main-preview>
+            </app-config-panel>
+            <app-config-panel name="Audio" icon="volume">
+            </app-config-panel>
+            <app-config-panel name="Post-Processing" icon="film">
+            </app-config-panel>
+          </app-config>
+        </section>
 
-      <app-sidebar side="right"></app-sidebar>
-    </main>
+        <app-sidebar side="right"></app-sidebar>
+      </main>
+    </app-display-server>
 
     <script type="text/javascript" src="index.js"></script>
   </body>

@@ -14,6 +14,7 @@ export default class AppSidebar extends window.HTMLElement {
     this.appendChild(el())
     this.interplay = Interplay()
     this.values = this.interplay.values
+    this.side = null
     this.fit = null
 
     this.addEventListener('click', e => {
@@ -28,6 +29,16 @@ export default class AppSidebar extends window.HTMLElement {
         this.dispatchEvent(Event('app-sidebar-snapshot'))
       })
     }, false)
+
+    if (!this.interplay) return
+
+    this.interplay.on('change', (key, next, prev) => {
+      this.side = (this.side || this.getAttribute('side'))
+      this.dispatchEvent(Event('app-sidebar-update', {
+        key, next, prev,
+        side: this.side
+      }))
+    })
   }
 
   attachedCallback () {

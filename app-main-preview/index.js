@@ -89,6 +89,12 @@ export default class AppMainPreview extends window.HTMLElement {
 
     function render (h, state) {
       return h('form', [
+        h('button', {
+          'ev-click': e => {
+            e.preventDefault()
+            self.dispatchEvent(Event('app-main-open-preview'))
+          }
+        }, 'OPEN PREVIEW WINDOW'),
         h('fieldset', [
           h('label', { for: 'small-preview-scale' }, 'Small Preview Scale'),
           h('select', {

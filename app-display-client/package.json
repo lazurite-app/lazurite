@@ -1,0 +1,8 @@
+{
+  "name": "app-display-client",
+  "version": "1.0.0",
+  "dependencies": {
+    "rtc-quickconnect": "^4.3.3",
+    "synthetic-dom-events": "^0.3.0"
+  }
+}
