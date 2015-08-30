@@ -2,6 +2,7 @@
   "name": "app-display-server",
   "version": "1.0.0",
   "dependencies": {
+    "freeice": "^2.2.0",
     "rtc-quickconnect": "^4.3.3"
   }
 }
