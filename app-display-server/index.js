@@ -1,32 +1,22 @@
-const qc = require('rtc-quickconnect')
-const freeice = require('freeice')
+import querystring from 'querystring'
+import signalhub from 'signalhub'
+
+const hubPort = querystring.parse(String(
+  window.location.search
+).slice(1)).hub
 
 export default class AppDisplayServer extends window.HTMLElement {
   createdCallback () {
-    const channels = new Set()
-
-    this.client = qc('https://switchboard.rtc.io/', {
-      room: 'lazurite-client',
-      iceServers: freeice()
-    }).createDataChannel('lazurite')
-      .on('channel:opened:lazurite', (_, dc) => channels.add(dc))
-      .on('channel:closed:lazurite', (_, dc) => channels.delete(dc))
+    this.client = signalhub('lazurite-client', [
+      `http://localhost:${hubPort}`
+    ])
 
     this.addEventListener('app-sidebar-update', e => {
-      const data = JSON.stringify({
+      this.client.broadcast('/updates', {
         value: e.next,
         side: e.side,
         key: e.key
       })
-
-      for (var channel of channels.values()) {
-        if (channel.readyState === 'closed') {
-          channels.delete(channel)
-          continue
-        }
-
-        channel.send(data)
-      }
     }, true)
   }
 }

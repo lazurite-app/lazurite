@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "dependencies": {
     "freeice": "^2.2.0",
-    "rtc-quickconnect": "^4.3.3"
+    "rtc-quickconnect": "^4.3.3",
+    "signalhub": "^4.2.1"
   }
 }

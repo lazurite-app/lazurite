@@ -4,6 +4,8 @@
   "dependencies": {
     "freeice": "^2.2.0",
     "rtc-quickconnect": "^4.3.3",
-    "synthetic-dom-events": "^0.3.0"
+    "signalhub": "^4.2.1",
+    "synthetic-dom-events": "^0.3.0",
+    "webrtc-swarm": "^1.2.0"
   }
 }
