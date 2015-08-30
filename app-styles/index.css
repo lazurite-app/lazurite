@@ -22,6 +22,7 @@ body {
 @import 'app-sidebar';
 @import 'app-scene-select';
 @import 'app-config';
+@import 'app-display-client';
 
 /**
  * For modern browsers
