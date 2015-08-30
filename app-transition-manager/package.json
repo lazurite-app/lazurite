@@ -1,0 +1,7 @@
+{
+  "name": "app-transition-manager",
+  "version": "1.0.0",
+  "dependencies": {
+    "synthetic-dom-events": "^0.3.0"
+  }
+}

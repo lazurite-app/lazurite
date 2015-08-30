@@ -79,13 +79,20 @@ export default class AppMainPreview extends window.HTMLElement {
       smallScale: 4,
       largeScale: 8,
       smallEnabled: true,
-      largeEnabled: true
+      largeEnabled: true,
+      transitionProgress: 0,
+      transitionType: 'fade'
     }
 
     this.appendChild(update(state))
 
     this.tick = this.tick.bind(this)
     this.tick()
+
+    document.body.addEventListener('app-transition-update', e => {
+      state.transitionProgress = e.data.progress
+      state.transitionType = e.data.type
+    }, true)
 
     function render (h, state) {
       return h('form', [
@@ -160,7 +167,7 @@ export default class AppMainPreview extends window.HTMLElement {
 
     const { gl } = this
     const shape = [gl.drawingBufferWidth, gl.drawingBufferHeight]
-    var progress = Math.sin(Date.now() / 4000) * 2
+    var progress = this.state.transitionProgress
     if (progress > 1) progress = 1
     if (progress < 0) progress = 0
 
@@ -183,6 +190,7 @@ export default class AppMainPreview extends window.HTMLElement {
     }
 
     gl.bindFramebuffer(gl.FRAMEBUFFER, null)
+    this.finalPass.transition(this.state.transitionType)
     this.finalPass(
       this.frames[0].color[0],
       this.frames[1].color[0],

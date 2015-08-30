@@ -69,10 +69,11 @@ float track(vec3 p) {
 float heightmap(vec2 p) {
   float h = 0.0;
 
+  p *= noiseDetail;
   h += noise2(vec2(p * 0.005)) * 5.5;
   h += noise2(vec2(p * 0.15)) * 0.5;
 
-  return h;
+  return h * noiseAmplitude;
 }
 
 vec2 doModel(vec3 p) {
@@ -96,7 +97,7 @@ void main() {
   vec3 color = bgcolor;
   vec3 ro, rd;
 
-  float rotation = 0.0; // iGlobalTime * 0.25 + cameraRotation;
+  float rotation = cameraRotation;
   float height   = cameraHeight + 0.25;
   float dist     = 8.0;
   camera(rotation, height, dist, iResolution.xy, ro, rd);

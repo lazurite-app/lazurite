@@ -22,6 +22,7 @@
     "app-scene-select": "file:app-scene-select",
     "app-sidebar": "file:app-sidebar",
     "app-styles": "file:app-styles",
+    "app-transition-manager": "file:app-transition-manager",
     "app-transitions": "file:app-transitions",
     "babel": "^5.5.8",
     "babelify": "^6.1.2",

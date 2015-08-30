@@ -13,6 +13,7 @@ document.registerElement('app-scene-select', require('app-scene-select'))
 document.registerElement('app-main-preview', require('app-main-preview'))
 document.registerElement('app-display-client', require('app-display-client'))
 document.registerElement('app-display-server', require('app-display-server'))
+document.registerElement('app-transition-manager', require('app-transition-manager'))
 
 document.body.addEventListener('app-scene-select', e => {
   const sidebars = document.querySelectorAll('app-sidebar')

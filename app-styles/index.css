@@ -23,6 +23,7 @@ body {
 @import 'app-scene-select';
 @import 'app-config';
 @import 'app-display-client';
+@import 'app-transition-manager';
 
 /**
  * For modern browsers

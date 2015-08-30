@@ -28,8 +28,8 @@ function appReady () {
 }
 
 function hubReady (hubPort) {
-  const control = new Browser({ show: false })
-  const display = new Browser({ show: false })
+  var control = new Browser({ show: false })
+  var display
   const qs = '?' + querystring.stringify({
     hub: hubPort
   })
@@ -42,7 +42,15 @@ function hubReady (hubPort) {
   }, 150)
 
   ipc.on('app-main-open-preview', function () {
+    if (display) {
+      display.close()
+    }
+
+    var me = display = new Browser({ show: false })
     display.loadUrl('file://' + require.resolve('./display.html') + qs)
     display.show()
+    display.once('closed', function () {
+      if (display === me) display = null
+    })
   })
 }

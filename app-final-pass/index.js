@@ -38,6 +38,7 @@ function finalPass (gl) {
   return render
 
   function setTransition (name) {
+    if (opts.transition === name) return
     opts.transition = name
     update(opts, updateShaders)
   }
