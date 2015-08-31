@@ -37,5 +37,9 @@ export default class AppDisplayServer extends window.HTMLElement {
       this.client.broadcast('reset', lastScene.left)
       this.client.broadcast('reset', lastScene.right)
     })
+
+    document.body.addEventListener('app-transition-update', e => {
+      this.client.broadcast('transition', e.data)
+    }, true)
   }
 }

@@ -46,7 +46,7 @@
     "scene-tunnel": "file:scene-tunnel",
     "scene-warp": "file:scene-warp",
     "serve": "^1.4.0",
-    "signalhub": "^4.2.1",
+    "signalhub": "^4.2.2",
     "watchify": "^3.2.3",
     "webcomponents.js": "^0.7.2"
   },

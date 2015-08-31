@@ -1,6 +1,5 @@
 import Event from 'synthetic-dom-events'
 import FinalPass from 'app-final-pass'
-import triangle from 'a-big-triangle'
 import Renderer from 'scene-renderer'
 import Shader from 'gl-shader'
 import fit from 'canvas-fit'

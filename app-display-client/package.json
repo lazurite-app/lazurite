@@ -2,9 +2,12 @@
   "name": "app-display-client",
   "version": "1.0.0",
   "dependencies": {
+    "canvas-fit": "^1.5.0",
     "freeice": "^2.2.0",
+    "gl-fbo": "^2.0.5",
+    "raf": "^3.1.0",
     "rtc-quickconnect": "^4.3.3",
-    "signalhub": "^4.2.1",
+    "signalhub": "^4.2.2",
     "synthetic-dom-events": "^0.3.0",
     "webrtc-swarm": "^1.2.0"
   }
