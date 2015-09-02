@@ -7,6 +7,8 @@
   },
   "dependencies": {
     "a-big-triangle": "^1.0.2",
-    "gl-shader": "^4.0.5"
+    "gl-shader": "^4.0.5",
+    "gl-texture2d": "^2.0.9",
+    "ndarray": "^1.0.18"
   }
 }

@@ -6,7 +6,6 @@ uniform float uChannelOffset;
 uniform float uWarp;
 uniform float uWeird;
 
-
 float n(float g) { return g * .5 + .5; }
 
 void main() {

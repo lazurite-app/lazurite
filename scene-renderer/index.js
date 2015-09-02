@@ -1,10 +1,10 @@
 const resolver = require('glslify-resolve-remote')({ offline: true })
+const microphone = require('app-microphone')
 const bundle = require('glslify-bundle')
 const deps = require('glslify-deps')
 const inherits = require('inherits')
 const copy = require('shallow-copy')
 const chokidar = require('chokidar')
-const glslify = require('glslify')
 const Emitter = require('events/')
 const after = require('after')
 const Path = require('path')
@@ -32,6 +32,7 @@ function SceneRenderer (gl, options) {
   this.manual = !!options.manual
   this.cache = options.cache || {}
   this.paused = false
+  this.microphone = false
 
   const interplay = this.interplay = options.interplay
   const values = this.values = options.values || (interplay ? interplay.values : {})
@@ -125,6 +126,7 @@ function SceneWrapper (gl, name, interplay, values, cache) {
   this.location = sceneLocation
   this.parameters = values
   this.bootstrap = addParams.bind(this, interplay, params)
+  this.microphone = microphone
 
   const shaders = basePkg.shaders || {}
   const watcher = chokidar.watch([])

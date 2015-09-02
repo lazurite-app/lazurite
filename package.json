@@ -18,6 +18,7 @@
     "app-final-pass": "file:app-final-pass",
     "app-main": "file:app-main",
     "app-main-preview": "file:app-main-preview",
+    "app-microphone": "file:app-microphone",
     "app-midi": "file:app-midi",
     "app-scene-select": "file:app-scene-select",
     "app-sidebar": "file:app-sidebar",

@@ -159,6 +159,9 @@ export default class AppMainPreview extends window.HTMLElement {
     }
   }
 
+  attachedCallback () {
+  }
+
   tick () {
     raf(this.tick) // TODO: only run when visible
 

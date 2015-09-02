@@ -27,8 +27,15 @@ function appReady () {
   })
 }
 
+function settings () {
+  return {
+    'web-security': false,
+    'show': false
+  }
+}
+
 function hubReady (hubPort) {
-  var control = new Browser({ show: false })
+  var control = new Browser(settings())
   var display
   const qs = '?' + querystring.stringify({
     hub: hubPort
@@ -46,7 +53,7 @@ function hubReady (hubPort) {
       display.close()
     }
 
-    var me = display = new Browser({ show: false })
+    var me = display = new Browser(settings())
     display.loadUrl('file://' + require.resolve('./display.html') + qs)
     display.show()
     display.once('closed', function () {
