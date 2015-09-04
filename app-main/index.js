@@ -1,3 +1,5 @@
+const scenes = require('scene-renderer').scenes
+const AppMIDI = require('app-midi-2')
 const getusermedia = require('getusermedia')
 const meta = require('meta-keys')()
 const Emitter = require('events/')
@@ -15,8 +17,9 @@ document.registerElement('app-display-client', require('app-display-client'))
 document.registerElement('app-display-server', require('app-display-server'))
 document.registerElement('app-transition-manager', require('app-transition-manager'))
 
+const sidebars = document.querySelectorAll('app-sidebar')
+
 document.body.addEventListener('app-scene-select', e => {
-  const sidebars = document.querySelectorAll('app-sidebar')
   const scene = e.scene
   const disabled = meta.shift[0] || meta.shift[1]
 
@@ -25,6 +28,16 @@ document.body.addEventListener('app-scene-select', e => {
     sidebars[i].renderer.use(scene)
   }
 }, true)
+
+AppMIDI.midi.forEach((midi, i) => {
+  midi.on('input', (kind, id, value) => {
+    if (kind !== 'buttons') return
+    const scene = scenes[id]
+    if (!scene) return
+    if (!value) return
+    sidebars[i].renderer.use(scene)
+  })
+})
 
 document.body.addEventListener('app-main-open-preview', e => {
   ipc.send('app-main-open-preview')

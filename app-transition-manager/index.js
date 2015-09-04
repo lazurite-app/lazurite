@@ -1,4 +1,5 @@
 import transitions from 'app-transitions'
+import AppMIDI from 'app-midi-2'
 import Event from 'synthetic-dom-events'
 import vel from 'vel'
 
@@ -12,6 +13,15 @@ export default class AppTransitionManager extends window.HTMLElement {
     }
 
     this.appendChild(update())
+
+    AppMIDI.midi.forEach(controller => {
+      controller.on('input', (kind, id, value) => {
+        if (kind !== 'faders') return
+        if (id !== 7) return
+        state.progress = value / 127
+        update()
+      })
+    })
 
     function update () {
       const event = Event('app-transition-update', { data: state })
