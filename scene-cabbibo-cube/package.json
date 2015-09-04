@@ -1,7 +1,7 @@
 {
-  "name": "scene-blob",
+  "name": "scene-cabbibo-cube",
   "version": "1.0.0",
-  "description": "Undulating Blob",
+  "description": "Cabbibo Cube",
   "scene": "scene-base-shadertoy",
   "parameters": {
     "noiseAmplitude": {
@@ -55,6 +55,17 @@
       "label": "Camera Height",
       "value": 0,
       "min": -3,
+      "max": 3,
+      "keys": {
+        "up": "I",
+        "down": "U"
+      }
+    },
+    "hueShift": {
+      "type": "range",
+      "label": "Hue Shift",
+      "value": 0,
+      "min": 0,
       "max": 3,
       "keys": {
         "up": "I",

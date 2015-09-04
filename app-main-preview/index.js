@@ -33,16 +33,20 @@ export default class AppMainPreview extends window.HTMLElement {
       return el
     })
 
-    this.renderers = this.sidebars.map((sidebar, i) => (
-      Renderer(this.gl, {
+    this.frames = this.sidebars.map(r => FBO(this.gl, [2, 2]))
+    this.renderers = this.sidebars.map((sidebar, i) => {
+      const renderer = Renderer(this.gl, {
         left: !i,
         right: !!i,
         values: sidebar.values,
         manual: true
       }).use('scene-warp')
-    ))
 
-    this.frames = this.renderers.map(r => FBO(this.gl, [2, 2]))
+      renderer.unbind = _ => this.frames[i].bind()
+
+      return renderer
+    })
+
     this.shader = Shader(this.gl, `
       precision mediump float;
 
@@ -76,7 +80,7 @@ export default class AppMainPreview extends window.HTMLElement {
     const el = vel(render)
     const state = this.state = {
       smallScale: 4,
-      largeScale: 8,
+      largeScale: 1,
       smallEnabled: true,
       largeEnabled: true,
       transitionProgress: 0,
@@ -179,6 +183,7 @@ export default class AppMainPreview extends window.HTMLElement {
       gl.clearColor(0, 0, 0, 1)
       gl.clear(gl.COLOR_BUFFER_BIT)
       gl.viewport(0, 0, shape[0], shape[1])
+      if (this.renderers[0].current) this.renderers[0].current.unbind = this.renderers[0].unbind
       this.renderers[0].tick()
     }
 
@@ -188,6 +193,7 @@ export default class AppMainPreview extends window.HTMLElement {
       gl.clearColor(0, 0, 0, 1)
       gl.clear(gl.COLOR_BUFFER_BIT)
       gl.viewport(0, 0, shape[0], shape[1])
+      if (this.renderers[1].current) this.renderers[1].current.unbind = this.renderers[1].unbind
       this.renderers[1].tick()
     }
 

@@ -6,6 +6,7 @@ const inherits = require('inherits')
 const copy = require('shallow-copy')
 const chokidar = require('chokidar')
 const Emitter = require('events/')
+const resolve = require('resolve')
 const after = require('after')
 const Path = require('path')
 const raf = require('raf')
@@ -112,16 +113,19 @@ function SceneWrapper (gl, name, interplay, values, cache) {
     return new SceneWrapper(gl, name, interplay, values)
   }
 
+  const self = this
+
   Emitter.call(this)
   cache[name] = this
 
   const sceneLocation = Path.dirname(require.resolve(name + '/package.json'))
   const sceneShaders = this.shaders = {}
   const scenePkg = require(name + '/package.json')
-  const basePkg = require(scenePkg.scene + '/package.json')
-  const base = require(scenePkg.scene)
+  const basePkg = require(resolve.sync(scenePkg.scene + '/package.json', { basedir: sceneLocation }))
+  const base = require(resolve.sync(scenePkg.scene, { basedir: sceneLocation }))
   const params = scenePkg.parameters
 
+  this.gl = gl
   this.name = name
   this.location = sceneLocation
   this.parameters = values
@@ -133,7 +137,6 @@ function SceneWrapper (gl, name, interplay, values, cache) {
   const watched = {}
   const labels = Object.keys(shaders)
   const next = after(labels.length, done)
-  const self = this
 
   self.enabled = false
   self.ready = false
@@ -227,4 +230,9 @@ function addParams (interplay, params) {
 
     interplay.add(key, Type, param)
   })
+}
+
+SceneWrapper.prototype.unbind = function () {
+  const { gl } = this
+  gl.bindFramebuffer(gl.FRAMEBUFFER, null)
 }

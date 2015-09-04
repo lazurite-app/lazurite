@@ -5,9 +5,11 @@
   "scenes": [
     "scene-blob",
     "scene-warp",
+    "scene-tracks",
+    "scene-cabbibo-cube",
+    "scene-excess",
     "scene-road-to-hell",
     "scene-tunnel",
-    "scene-tracks",
     "scene-ruler"
   ],
   "dependencies": {
@@ -21,6 +23,7 @@
     "glslify-resolve-remote": "^2.1.0",
     "inherits": "^2.0.1",
     "raf": "^3.0.0",
+    "resolve": "^1.1.6",
     "shallow-copy": "0.0.1"
   }
 }

@@ -8,6 +8,10 @@ uniform float noiseDetail;
 uniform float blobRadius;
 uniform float cameraRotation;
 uniform float cameraHeight;
+uniform float trackWidth;
+uniform float trackWave;
+uniform float trackRaise;
+uniform sampler2D waveformL1;
 
 vec2 doModel(vec3 p);
 
@@ -38,7 +42,7 @@ vec2 su(vec2 a, vec2 b) {
 }
 
 float trackSide(vec3 p) {
-  vec3 trackGap = vec3(0.25, 0, 0);
+  vec3 trackGap = vec3(0.25 * trackWidth, 0, 0);
 
   pmod(p.z, 0.1);
 
@@ -50,16 +54,18 @@ float trackSide(vec3 p) {
 
 float trackNotch(vec3 p) {
   pmod(p.z, 0.5);
-  return sdBox(p, vec3(0.35, 0.065, 0.05));
+  return sdBox(p, vec3(0.25 * trackWidth + 0.1, 0.065, 0.05));
 }
 
 float trackBase(vec3 p) {
   pmod(p.z, 0.5);
   p.y += 100.0;
-  return sdBox(p, vec3(0.5, 100.0, 0.5));
+  return sdBox(p, vec3(0.25 * trackWidth + 0.25, 100.0, 0.5));
 }
 
 float track(vec3 p) {
+  p.y -= trackRaise;
+
   return min(min(
     trackSide(p),
     trackNotch(p)
@@ -72,12 +78,13 @@ float heightmap(vec2 p) {
   p *= noiseDetail;
   h += noise2(vec2(p * 0.005)) * 5.5;
   h += noise2(vec2(p * 0.15)) * 0.5;
+  h += (texture2D(waveformL1, p.yx * vec2(0.1, 1.0)).r - 0.5) * 0.25 * trackWave;
 
   return h * noiseAmplitude;
 }
 
 vec2 doModel(vec3 p) {
-  float groundTrack = heightmap(vec2(0.0, p.z)) + 0.1;
+  float groundTrack = heightmap(vec2(0.0, p.z)) + trackRaise;
   float ground = heightmap(p.xz);
   float terrain = p.y - ground;
 
@@ -104,7 +111,7 @@ void main() {
 
   ro.z -= iGlobalTime * 10.;
   ro.y += heightmap(ro.xz);
-
+  ro.y += trackRaise;
 
   vec2 t = raytrace(ro, rd);
   if (t.x > -0.5) {
@@ -114,7 +121,7 @@ void main() {
 
     float sunDif = max(0.0, dot(sunDir, nor));
     if (t.y == ID_TERRAIN) {
-      mat = vec3(1);
+      mat = vec3(1.0);
     }
 
     color = mat * sunCol * sunDif;

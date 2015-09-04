@@ -31,12 +31,16 @@ export default class AppDisplayClient extends window.HTMLElement {
 
     const values = [{}, {}]
     const renderers = ['left', 'right'].map((side, i) => {
-      return new Renderer(gl, {
+      const renderer = new Renderer(gl, {
         left: side === 'left',
         right: side === 'right',
         values: values[i],
         manual: true
       }).use('scene-warp')
+
+      renderer.unbind = _ => frames[i].bind()
+
+      return renderer
     })
 
     client.subscribe('updates').on('data', data => {
@@ -77,6 +81,7 @@ export default class AppDisplayClient extends window.HTMLElement {
         gl.clearColor(0, 0, 0, 1)
         gl.clear(gl.COLOR_BUFFER_BIT)
         gl.viewport(0, 0, shape[0], shape[1])
+        if (renderers[0].current) renderers[0].current.unbind = renderers[0].unbind
         renderers[0].tick()
       }
 
@@ -86,6 +91,7 @@ export default class AppDisplayClient extends window.HTMLElement {
         gl.clearColor(0, 0, 0, 1)
         gl.clear(gl.COLOR_BUFFER_BIT)
         gl.viewport(0, 0, shape[0], shape[1])
+        if (renderers[1].current) renderers[1].current.unbind = renderers[1].unbind
         renderers[1].tick()
       }
 

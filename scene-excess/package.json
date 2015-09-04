@@ -1,0 +1,21 @@
+{
+  "name": "scene-excess",
+  "version": "1.0.0",
+  "scene": "./",
+  "parameters": {},
+  "shaders": {
+    "logicFrag": "logic.frag",
+    "logicVert": "logic.vert",
+    "renderFrag": "render.frag",
+    "renderVert": "render.vert"
+  },
+  "dependencies": {
+    "gl-buffer": "^2.1.2",
+    "gl-fbo": "^2.0.5",
+    "gl-now": "^1.4.0",
+    "gl-shader": "^4.0.5",
+    "gl-vao": "^1.2.1",
+    "ndarray": "^1.0.18",
+    "ndarray-fill": "^1.0.1"
+  }
+}
