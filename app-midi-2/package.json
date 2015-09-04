@@ -1,0 +1,7 @@
+{
+  "name": "app-midi-2",
+  "version": "1.0.0",
+  "dependencies": {
+    "launch-control-xl": "^1.1.0"
+  }
+}

@@ -45,6 +45,8 @@ function Scene (gl, scene) {
       var source = sources[i]
       if (!source.enabled) continue
 
+      // console.log(source.label, i)
+
       var lfkey = `frequencyL${i}`
       var rfkey = `frequencyR${i}`
       var lwkey = `waveformL${i}`
@@ -53,6 +55,7 @@ function Scene (gl, scene) {
       if (lfkey in shader.uniforms) {
         const data = source.frequency[0]
         ndaFreqs[j] = ndaFreqs[j] || ndarray(data, [data.length, 1])
+        ndaFreqs[j].data = data
         texFreqs[j] = texFreqs[j] || setupTex(Texture2D(gl, ndaFreqs[j]))
         texFreqs[j].setPixels(ndaFreqs[j])
         shader.uniforms[lfkey] = texFreqs[j++].bind(k++)
@@ -61,6 +64,7 @@ function Scene (gl, scene) {
       if (rfkey in shader.uniforms) {
         const data = source.frequency[1]
         ndaFreqs[j] = ndaFreqs[j] || ndarray(data, [data.length, 1])
+        ndaFreqs[j].data = data
         texFreqs[j] = texFreqs[j] || setupTex(Texture2D(gl, ndaFreqs[j]))
         texFreqs[j].setPixels(ndaFreqs[j])
         shader.uniforms[rfkey] = texFreqs[j++].bind(k++)
@@ -69,6 +73,7 @@ function Scene (gl, scene) {
       if (lwkey in shader.uniforms) {
         const data = source.waveform[0]
         ndaWaves[j] = ndaWaves[j] || ndarray(data, [data.length, 1])
+        ndaWaves[j].data = data
         texWaves[j] = texWaves[j] || setupTex(Texture2D(gl, ndaWaves[j]))
         texWaves[j].setPixels(ndaWaves[j])
         shader.uniforms[rfkey] = texWaves[j++].bind(k++)
@@ -77,6 +82,7 @@ function Scene (gl, scene) {
       if (rwkey in shader.uniforms) {
         const data = source.waveform[1]
         ndaWaves[j] = ndaWaves[j] || ndarray(data, [data.length, 1])
+        ndaWaves[j].data = data
         texWaves[j] = texWaves[j] || setupTex(Texture2D(gl, ndaWaves[j]))
         texWaves[j].setPixels(ndaWaves[j])
         shader.uniforms[rfkey] = texWaves[j++].bind(k++)

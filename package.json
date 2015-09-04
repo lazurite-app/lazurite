@@ -20,6 +20,7 @@
     "app-main-preview": "file:app-main-preview",
     "app-microphone": "file:app-microphone",
     "app-midi": "file:app-midi",
+    "app-midi-2": "file:app-midi-2",
     "app-scene-select": "file:app-scene-select",
     "app-sidebar": "file:app-sidebar",
     "app-styles": "file:app-styles",

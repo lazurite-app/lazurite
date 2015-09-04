@@ -5,6 +5,9 @@ uniform vec3  iResolution;
 uniform float uChannelOffset;
 uniform float uWarp;
 uniform float uWeird;
+uniform float uDistortion;
+
+uniform sampler2D waveformL1;
 
 float n(float g) { return g * .5 + .5; }
 
@@ -16,6 +19,8 @@ void main() {
   vec3  c = vec3(0);
 
   p = vec2(sin(a), cos(a))/l;
+
+  p += texture2D(waveformL1, p.yx).r * uDistortion;
 
   for (int i = 0; i < 3; i++) {
     float mag = 0.0;

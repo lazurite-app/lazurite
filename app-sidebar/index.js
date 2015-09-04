@@ -2,6 +2,7 @@ import SceneRenderer from 'scene-renderer'
 import Event from 'synthetic-dom-events'
 import findup from 'findup-element'
 import Interplay from 'interplay'
+import AppMIDI from 'app-midi-2'
 import fit from 'canvas-fit'
 import vel from 'vel'
 
@@ -88,6 +89,24 @@ export default class AppSidebar extends window.HTMLElement {
       }).use('scene-warp')
 
       resetSignal('scene-warp')
+
+      AppMIDI.midi[
+        this.getAttribute('side') === 'left' ? 0 : 1
+      ].on('input', (kind, id, value) => {
+        if (!this.interplay) return
+        if (kind !== 'faders') return
+        if (id >= 7) return
+
+        const values = this.interplay.values
+        var i = -1
+        for (var key in values) {
+          if (!values.hasOwnProperty(key)) continue
+          if (++i > id) break
+          if (i !== id) continue
+          var opts = this.interplay.options[key]
+          values[key] = opts.min + value / 127 * (opts.max - opts.min)
+        }
+      })
     }
   }
 }
