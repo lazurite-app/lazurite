@@ -88,6 +88,8 @@ export default class AppMainPreview extends window.HTMLElement {
     }
 
     this.appendChild(update(state))
+    this.fit.scale = state.largeScale
+    setTimeout(this.fit)
 
     this.tick = this.tick.bind(this)
     this.tick()

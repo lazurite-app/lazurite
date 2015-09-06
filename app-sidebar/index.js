@@ -94,8 +94,7 @@ export default class AppSidebar extends window.HTMLElement {
         this.getAttribute('side') === 'left' ? 0 : 1
       ].on('input', (kind, id, value) => {
         if (!this.interplay) return
-        if (kind !== 'faders') return
-        if (id >= 7) return
+        if (kind !== 'knobs') return
 
         const values = this.interplay.values
         var i = -1

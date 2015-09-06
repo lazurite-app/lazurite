@@ -17,7 +17,6 @@ export default class AppTransitionManager extends window.HTMLElement {
     AppMIDI.midi.forEach(controller => {
       controller.on('input', (kind, id, value) => {
         if (kind !== 'faders') return
-        if (id !== 7) return
         state.progress = value / 127
         update()
       })

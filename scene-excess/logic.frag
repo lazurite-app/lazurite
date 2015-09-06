@@ -10,11 +10,12 @@ uniform float uTime;
 const vec3 OFFSET = vec3(2399.24849823098, 3299.9028381, 389.09338327);
 const float SPEED = 2.0;
 
+
 void main() {
   vec3 sampled = texture2D(uState, gl_FragCoord.xy / vec2(512.0)).rgb;
   vec2 nextPosition = sampled.xy;
 
-  float t = uTime * 0.013849829389;
+  float t = uTime * 0.013849829389 * ( + 1000.0) * 0.;
 
   nextPosition += vec2(
       simplex(vec3(nextPosition * 0.005, 9280.03992092039 + t + gl_FragCoord.x / 110.0) + OFFSET)

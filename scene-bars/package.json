@@ -1,0 +1,48 @@
+{
+  "name": "scene-bars",
+  "version": "1.0.0",
+  "description": "Waveform Bars",
+  "scene": "scene-base-shadertoy",
+  "parameters": {
+    "barScale": {
+      "label": "barScale",
+      "type": "range",
+      "value": 1,
+      "min": 0,
+      "max": 5,
+      "step": 0.0001
+    },
+    "wavesAmount": {
+      "label": "wavesAmount",
+      "type": "range",
+      "value": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.0001
+    },
+    "wavesPeriod": {
+      "label": "wavesPeriod",
+      "type": "range",
+      "value": 1,
+      "min": 0,
+      "max": 2,
+      "step": 0.0001
+    },
+    "noiseAmount": {
+      "label": "noiseAmount",
+      "type": "range",
+      "value": 0,
+      "min": 0,
+      "max": 0.2,
+      "step": 0.0001
+    },
+    "noisePeriod": {
+      "label": "noisePeriod",
+      "type": "range",
+      "value": 1,
+      "min": 0,
+      "max": 2,
+      "step": 0.0001
+    }
+  }
+}

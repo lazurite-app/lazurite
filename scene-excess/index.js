@@ -1,3 +1,4 @@
+var attachMicrophone = require('scene-base-shadertoy/attach-microphone')
 var createBuffer = require('gl-buffer')
 var createFBO = require('gl-fbo')
 var createVAO = require('gl-vao')
@@ -10,6 +11,7 @@ module.exports = Scene
 
 function Scene (gl, scene) {
   var resolution = new Float32Array([0, 0, 0])
+  var microphone = attachMicrophone(scene)
   var logicVert, renderVert
   var logicFrag, renderFrag
   var screenVertices, particleVertices
@@ -103,9 +105,10 @@ function Scene (gl, scene) {
 
     var shader = logic
     shader.bind()
-    shader.uniforms.uState = prevState.color[0].bind(5)
+    shader.uniforms.uState = prevState.color[0].bind(0)
     shader.uniforms.uTime = scene.time
     screenVertices.bind()
+    microphone(shader)
     gl.drawArrays(gl.TRIANGLES, 0, 6)
 
     // Reset, draw to screen
@@ -120,8 +123,9 @@ function Scene (gl, scene) {
 
     var shader = render
     shader.bind()
-    shader.uniforms.uState = nextState.color[0].bind(5)
+    shader.uniforms.uState = nextState.color[0].bind(0)
     shader.uniforms.uScreen = [resolution[0], resolution[1]]
+    microphone(shader)
 
     particleVertices.bind()
 

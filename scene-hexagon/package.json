@@ -1,0 +1,107 @@
+{
+  "name": "scene-hexagon",
+  "version": "1.0.0",
+  "description": "Hexagon",
+  "scene": "scene-base-shadertoy",
+  "parameters": {
+    "turnRate": {
+      "type": "range",
+      "label": "Turn Rate",
+      "value": 0,
+      "min": 0,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "turnOffset": {
+      "type": "range",
+      "label": "Turn Offset",
+      "value": 0,
+      "min": -3,
+      "max": 3,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "nodeThickness": {
+      "type": "range",
+      "label": "Node Thickness",
+      "value": 0,
+      "min": 0,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "satBase": {
+      "type": "range",
+      "label": "Base Saturation",
+      "value": 0.5,
+      "min": 0,
+      "max": 2,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "satReaction": {
+      "type": "range",
+      "label": "Reactive Saturation",
+      "value": 0,
+      "min": -1,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "hueBase": {
+      "type": "range",
+      "label": "Base Hue",
+      "value": 0,
+      "min": 0,
+      "max": 2,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "hueReaction": {
+      "type": "range",
+      "label": "Reactive Hue",
+      "value": 0,
+      "min": -1,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "lightBase": {
+      "type": "range",
+      "label": "Base Lightness",
+      "value": 0.5,
+      "min": 0,
+      "max": 2,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    },
+    "lightReaction": {
+      "type": "range",
+      "label": "Reactive Lightness",
+      "value": 0,
+      "min": -1,
+      "max": 1,
+      "keys": {
+        "up": "K",
+        "down": "J"
+      }
+    }
+  }
+}
