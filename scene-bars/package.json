@@ -43,6 +43,14 @@
       "min": 0,
       "max": 2,
       "step": 0.0001
+    },
+    "brightness": {
+      "label": "brightness",
+      "type": "range",
+      "value": 1,
+      "min": 0,
+      "max": 2,
+      "step": 0.0001
     }
   }
 }

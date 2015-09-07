@@ -1,0 +1,30 @@
+{
+  "name": "scene-moire",
+  "version": "1.0.0",
+  "scene": "./",
+  "parameters": {
+    "audioReaction": {
+      "label": "Audio Reaction",
+      "type": "range",
+      "value": 1,
+      "min": -4,
+      "max": 4,
+      "step": 0.0001
+    }
+  },
+  "shaders": {
+    "frag": "moire.frag",
+    "vert": "moire.vert"
+  },
+  "dependencies": {
+    "gl-buffer": "^2.1.2",
+    "gl-fbo": "^2.0.5",
+    "gl-matrix": "^2.3.1",
+    "gl-now": "^1.4.0",
+    "gl-shader": "^4.0.5",
+    "gl-vao": "^1.2.1",
+    "ndarray": "^1.0.18",
+    "ndarray-fill": "^1.0.1",
+    "orbit-camera": "^1.0.0"
+  }
+}

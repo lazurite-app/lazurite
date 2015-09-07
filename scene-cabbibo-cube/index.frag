@@ -10,8 +10,8 @@ uniform float hueShift;
 uniform float cameraRotation;
 uniform float cameraHeight;
 
-uniform sampler2D waveformL1;
-uniform sampler2D frequencyL1;
+uniform sampler2D waveformL0;
+uniform sampler2D frequencyL0;
 
 
 // ALL TAKEN FROM IQs AMAZING SITE / TUTORIALS / SHADERS:
@@ -157,7 +157,7 @@ vec2 opU( vec2 d1, vec2 d2 ){
 // Modelling
 //--------------------------------
 vec2 map( vec3 pos ){
-     float scale = mix(1.0, texture2D(frequencyL1, vec2(0.0275)).r * 0.5 + 0.5, noiseAmplitude) + (blobRadius - 1.0);
+     float scale = mix(1.0, texture2D(frequencyL0, vec2(0.0275)).r * 0.5 + 0.5, noiseAmplitude) + (blobRadius - 1.0);
      vec2 res = vec2( rotatedBox( pos ,
        vec3( iGlobalTime * .05 * 26. + 1., iGlobalTime * .02 * 26. + 2. , iGlobalTime * .03 * 26.  ), vec3( 0.7 * scale ) , .1 ) , 1.0 );
      //vec2 res2 = vec2( sdPlane( pos - vec3( 0. , -1. , 0. )), 0.0 );
@@ -267,8 +267,8 @@ void main()
         float eyeMatch = max( 0. , dot( refl , rd ) );
         float lamb =max( 0.0 , dot( lightPos , norm ));
 
-        // pos.y += texture2D(waveformL1, pos.xz * 0.1).r;
-        float lum = fogCube( pos , rd , norm ) * texture2D(frequencyL1, vec2(0.0075)).r + 10.;
+        // pos.y += texture2D(waveformL0, pos.xz * 0.1).r;
+        float lum = fogCube( pos , rd , norm ) * texture2D(frequencyL0, vec2(0.0075)).r + 10.;
        // col = norm * .5 + .5;
 
         float lu = max( 0.0 , -dot( lightPos , norm ));

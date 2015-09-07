@@ -9,7 +9,7 @@ uniform float blobRadius;
 uniform float cameraRotation;
 uniform float cameraHeight;
 
-uniform sampler2D frequencyL1;
+uniform sampler2D frequencyL0;
 
 #define PI 3.14159265
 
@@ -218,7 +218,7 @@ vec3 doBackground( void )
 //------------------------------------------------------------------------
 float doModel( vec3 p )
 {
-    float n = max(0., texture2D(frequencyL1, vec2(0.015, 0.)).r * 3.5 - 1.);
+    float n = max(0., texture2D(frequencyL0, vec2(0.015, 0.)).r * 3.5 - 1.);
 
     n = n * exp(snoise(vec4(p * 2.1 * noiseDetail, iGlobalTime * 2.3)));
     n *= noiseAmplitude;

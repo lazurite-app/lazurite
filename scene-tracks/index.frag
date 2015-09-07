@@ -11,7 +11,7 @@ uniform float cameraHeight;
 uniform float trackWidth;
 uniform float trackWave;
 uniform float trackRaise;
-uniform sampler2D waveformL1;
+uniform sampler2D waveformL0;
 
 vec2 doModel(vec3 p);
 
@@ -78,7 +78,7 @@ float heightmap(vec2 p) {
   p *= noiseDetail;
   h += noise2(vec2(p * 0.005)) * 5.5;
   h += noise2(vec2(p * 0.15)) * 0.5;
-  h += (texture2D(waveformL1, p.yx * vec2(0.1, 1.0)).r - 0.5) * 0.25 * trackWave;
+  h += (texture2D(waveformL0, p.yx * vec2(0.1, 1.0)).r - 0.5) * 0.25 * trackWave;
 
   return h * noiseAmplitude;
 }

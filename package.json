@@ -45,6 +45,7 @@
     "scene-cabbibo-cube": "file:scene-cabbibo-cube",
     "scene-excess": "file:scene-excess",
     "scene-hexagon": "file:scene-hexagon",
+    "scene-moire": "file:scene-moire",
     "scene-renderer": "file:scene-renderer",
     "scene-road-to-hell": "file:scene-road-to-hell",
     "scene-ruler": "file:scene-ruler",

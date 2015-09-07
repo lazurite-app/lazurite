@@ -6,6 +6,7 @@ uniform vec3  iResolution;
 uniform float turnRate;
 uniform float turnOffset;
 uniform float nodeThickness;
+uniform float baseThickness;
 uniform float lightReaction;
 uniform float lightBase;
 uniform float satReaction;
@@ -25,9 +26,9 @@ vec2 doModel(vec3 p);
 #define PI 3.14159265359
 #define TAU 6.28318530718
 
-uniform sampler2D waveformL1;
-uniform sampler2D waveformR1;
-uniform sampler2D frequencyL1;
+uniform sampler2D waveformL0;
+uniform sampler2D waveformR0;
+uniform sampler2D frequencyL0;
 
 void pmod(inout vec3 p, float n) {
   p = mod(p + n, n * 2.0) - n;
@@ -69,7 +70,7 @@ vec2 doModel(vec3 p) {
   float idx = floor(op.z + 0.5) - 1.0;
 
   vec2 frq = vec2(
-    texture2D(frequencyL1, vec2(0.01 + fract(idx * 0.1) * 0.1)).r
+    texture2D(frequencyL0, vec2(0.01 + fract(idx * 0.1) * 0.1)).r
   );
 
   pmod(p.z, 1.0);
@@ -84,7 +85,7 @@ vec2 doModel(vec3 p) {
   p2 = (rotationMatrix(normalize(vec3(0, 1, 1)), iGlobalTime + idx * turnRate + turnOffset) * vec4(p2, 1)).xyz;
   p3 = (rotationMatrix(normalize(vec3(0, 1, 1)), iGlobalTime + idx * turnRate + turnOffset) * vec4(p3, 1)).xyz;
 
-  vec3 size = vec3(0.225, 0.025 + nodeThickness, 0.125) * frq.x;
+  vec3 size = vec3(0.225, 0.025 + nodeThickness, 0.125) * frq.x + baseThickness;
 
   float r  = 1.0;
   float d  = min(min(sdBox(p1, size), sdBox(p2, size)), sdBox(p3, size));
@@ -107,8 +108,8 @@ void main() {
   if (t.x > -0.5) {
     vec3 pos = ro + rd * t.x;
     vec2 amp = (vec2(
-      texture2D(waveformL1, t.yy * 0.1).r,
-      texture2D(waveformR1, t.yy * 0.1).r
+      texture2D(waveformL0, t.yy * 0.1).r,
+      texture2D(waveformR0, t.yy * 0.1).r
     ) - vec2(0.5)) * 2.0;
 
     vec3 nor = normal(pos);

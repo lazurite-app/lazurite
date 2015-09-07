@@ -15,15 +15,15 @@ vec2 doModel(vec3 p);
 #define PI 3.14159265359
 #define TAU 6.28318530718
 
-uniform sampler2D waveformL1;
-uniform sampler2D waveformR1;
+uniform sampler2D waveformL0;
+uniform sampler2D waveformR0;
 uniform float hue1;
 uniform float hue2;
 
 void main() {
   vec2 uv = vec2(gl_FragCoord.xy / iResolution.xy);
-  float a1 = texture2D(waveformL1, uv).r * 2.0 - 1.0;
-  float a2 = 1.0 - texture2D(waveformR1, uv).r * 2.0;
+  float a1 = texture2D(waveformL0, uv).r * 2.0 - 1.0;
+  float a2 = 1.0 - texture2D(waveformR0, uv).r * 2.0;
 
   uv = uv * 2.0 - 1.0;
 

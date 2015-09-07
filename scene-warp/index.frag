@@ -7,7 +7,7 @@ uniform float uWarp;
 uniform float uWeird;
 uniform float uDistortion;
 
-uniform sampler2D waveformL1;
+uniform sampler2D waveformL0;
 
 float n(float g) { return g * .5 + .5; }
 
@@ -20,7 +20,7 @@ void main() {
 
   p = vec2(sin(a), cos(a))/l;
 
-  p += texture2D(waveformL1, p.yx).r * uDistortion;
+  p += texture2D(waveformL0, p.yx).r * uDistortion;
 
   for (int i = 0; i < 3; i++) {
     float mag = 0.0;

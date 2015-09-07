@@ -15,13 +15,14 @@ vec2 doModel(vec3 p);
 #define PI 3.14159265359
 #define TAU 6.28318530718
 
-uniform sampler2D waveformL1;
-uniform sampler2D waveformR1;
+uniform sampler2D waveformL0;
+uniform sampler2D waveformR0;
 uniform float barScale;
 uniform float wavesAmount;
 uniform float wavesPeriod;
 uniform float noiseAmount;
 uniform float noisePeriod;
+uniform float brightness;
 
 void main() {
   vec2 uv = vec2(gl_FragCoord.xy / iResolution.xy);
@@ -33,7 +34,7 @@ void main() {
     noise(vec2(uv.y * noisePeriod * 100.0, iGlobalTime) * 0.1)
   );
 
-  float amplitude = (texture2D(waveformL1, uv).r * 2.0 - 1.0) * 9.0;
+  float amplitude = (texture2D(waveformL0, uv).r * 2.0 - 1.0) * 10.0 * brightness;
 
   vec3 color = vec3(0);
 
