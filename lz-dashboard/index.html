@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>lz-column</title>
+    <style media="screen">
+      body {
+        background: #000;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      lz-dashboard {
+        position: absolute;
+        top: 0.5rem; left: 0.5rem; bottom: 0.5rem; right: 0.5rem;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <lz-dashboard store="dashboard-demo">
+      <lz-column>
+        <lz-panel open="false" name="Frame 1 Preview" icon="frame"> 🏠
+        </lz-panel>
+        <lz-panel open="false" name="Frame 1 Parameters" icon="cog-outline"> 🐨
+        </lz-panel>
+        <lz-panel name="Frame 1 Parameters" icon="cog-outline"> ✨
+        </lz-panel>
+        <lz-panel name="Frame 1 Parameters" icon="cog-outline"> 🐨
+        </lz-panel>
+        <lz-panel open="false" name="Frame 1 Parameters" icon="cog-outline"> 🐨
+        </lz-panel>
+        <lz-panel open="false" name="Frame 1 Parameters" icon="cog-outline"> 🐨
+        </lz-panel>
+        <lz-panel name="Frame 1 Parameters" icon="cog-outline"> 🐨
+        </lz-panel>
+      </lz-column>
+      <lz-column>
+        <lz-panel open="false" name="Frame 1 Preview" icon="frame"> 🏠
+        </lz-panel>
+      </lz-column>
+      <lz-column>
+        <lz-panel name="Hello World" icon="cog-outline">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate
+            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+            cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+            est laborum.
+          </p>
+        </lz-panel>
+        <lz-panel name="Lorem Ipsum" icon="brush">
+          <p>
+            Hello! 🐨
+          </p>
+        </lz-panel>
+      </lz-column>
+    </lz-dashboard>
+
+    <script type="text/javascript" src="bundle.js"></script>
+  </body>
+</html>

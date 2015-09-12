@@ -1,0 +1,22 @@
+{
+  "name": "lazurite",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "postinstall": "linklocal && linklocal --list | bulk -c 'npm install --production --cache-min Infinity'",
+    "prestart": "linklocal"
+  },
+  "dependencies": {
+    "babelify": "^6.2.0",
+    "brfs": "^1.4.1",
+    "cssnext": "^1.8.4",
+    "linklocal": "^2.5.2",
+    "lz-column": "file:lz-column",
+    "lz-dashboard": "file:lz-dashboard",
+    "lz-panel": "file:lz-panel",
+    "vel": "^1.1.4"
+  },
+  "devDependencies": {
+    "budo": "^4.2.1"
+  }
+}

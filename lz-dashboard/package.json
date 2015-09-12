@@ -1,0 +1,19 @@
+{
+  "name": "lz-dashboard",
+  "version": "1.0.0",
+  "browserify": {
+    "transform": [
+      "babelify",
+      "brfs"
+    ]
+  },
+  "scripts": {
+    "start": "budo demo.js:bundle.js"
+  },
+  "devDependencies": {
+    "budo": "^4.2.1"
+  },
+  "dependencies": {
+    "cssnext": "^1.8.4"
+  }
+}

@@ -1,0 +1,14 @@
+lz-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+}
+
+lz-column > lz-panel {
+  margin-bottom: 2px;
+}
+
+lz-column > lz-panel:last-of-type {
+  margin-bottom: 0;
+}

@@ -1,0 +1,17 @@
+lz-dashboard {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 2px;
+}
+
+lz-dashboard > lz-column {
+  flex-grow: 1;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+lz-dashboard > lz-column:last-of-type {
+  margin-right: 2px;
+}
